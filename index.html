@@ -281,6 +281,12 @@
       <div id="table-of-abbreviation"></div>
 
     </div>
+    <br/><br/>
+    <h2>SAFMC 2025 Competition Video</h2>
+    <video-component
+            source="https://www.youtube.com/embed/XGPAL6tEHRM?si=YUXf7Rwzba4o0ClW"
+            subtitle="SAFMC 2025 Competition Video">
+    </video-component>
     
     <br />
     <br />
@@ -1203,7 +1209,7 @@
           <br/>
           <h3>7.2 Mock-Up of the Pillar Area</h3>
         <p>
-          To test the Pillar Area, we need to build a mock-up of 8 Pillars in the area for our drones to navigate through. This was achieved using Styrofoam boards, which were tested to ensure that the drones can detect them while flying and can also fly in a stable manner near them. Both were found to be satisfactory with our Crazyflie drones. The dimensions of the pillar are about 30cm in diameter, close to the competition specification of 40cm. The height of the pillar are about 30-40cm, tall enough for our initially planned flying altitude of 30cm.
+          To test the Pillar Area, we need to build a mock-up of 8 Pillars in the area for our drones to navigate through. This was achieved using Styrofoam boards, which were tested to ensure that the drones can detect them while flying and can also fly in a stable manner near them. Both were found to be satisfactory with our Crazyflie drones. The dimensions of the pillar are about 25-30cm in diameter, a close approximation of the competition pillars that would be of diameter 30cm. The height of the pillar are about 30-40cm, tall enough for our initially planned flying altitude of 30cm.
         </p>
           <br/><br/>
 
@@ -1297,7 +1303,7 @@
           <p>
             Another parameter that we sought to optimise was the speed of the drones while flying within the pillar zone. Flying faster would mean that we are able to complete the mission in a quicker time, but would also increase the chance of crashing into pillars due to either slow or non-detection of the pillars while flying. This happens as the drones do require a processing time between detecting the pillars and avoiding it, and flying too fast would mean that the drones would crash into pillars before they are able to avoid it. Flying too slowly however would cause the mission to take too much time to complete.
             <br/>
-            A speed of 0.5m/s was initially chosen. However, this was too fast leading to frequent crashes with drones. 0.2m/s was found to work well, but too slow. 0.25m/s was later found to be the optimal speed balancing speed with reliability of the algorithm.
+            A speed of 0.5m/s was initially chosen. However, this was too fast leading to frequent crashes with drones. 0.2m/s was found to work well, but too slow. <b>0.3m/s</b> was later found to be the optimal speed balancing speed with reliability of the algorithm.
             <br/>
           </p>
           </div>
@@ -1506,18 +1512,33 @@
 
         <p>
           On the 17th of March 2025, our team participated in SAFMC 2025 held at the Singapore Expo. This was the “final” full scale test with our full system being run all together.
-        <br/>
+        <br/><br/>
+          <video-component
+                  source="https://www.youtube.com/embed/IqY88n7He6Y?si=Reily2iomuf5lFgg"
+                  subtitle="Figure 9.1: Video showing the competition arena layout">
+          </video-component>
         </p>
 
         <image-component tag="image" source="./assets/section-9-full-scale-testing/setup.png"
                          subtitle="Figure 9.2: Set up @ SAFMC 2025"></image-component>
+        <br/><br/>
+        <image-component tag="image" source="./assets/section-9-full-scale-testing/computer.png"
+                         subtitle="Figure 9.3: Computer set-up @ SAFMC 2025"></image-component>
+        <br/><br/>
+        <image-component tag="image" source="./assets/section-9-full-scale-testing/known_area.png"
+                         subtitle="Figure 9.4: Known Area"></image-component>
+        <br/>
+        <br/>
         <br/><br/>
         
       <p>
         We were given two runs to test our drone swarm system with the better of the two runs taken as the final score. A total of 5 Victim Markers (of possible 8 as given in the rules) were used on the actual day, and likewise 3 Danger Zones (of possible 4) were used. The location of the Victim Markers and Danger Zones were not made known to us before placing our drones down and were only placed in the Playing Field after deciding on the placement of drones in the Playing Field. We only knew that the two Bonus Victims would be placed in the Pillar and Unknown Search Areas (one each) while the rest of the Regular Victims could be placed anywhere in the Playing Field.
         <br/><br/>
       </p>
-
+        <br/><br/>
+        <image-component tag="image" source="./assets/section-9-full-scale-testing/drone_takeoff.png"
+                         subtitle="Figure 9.5: Drone Takeoff for the Known Area"></image-component>
+        <br/>
         <image-component tag="image" source="./assets/section-9-full-scale-testing/actual-pillar.png"
                          subtitle="Figure 9.3: Pillar Area in the actual arena"></image-component>
        <p> 
@@ -1530,12 +1551,15 @@
           <div id="actual-test-scores"></div>
         </actual-test-scores>
         <br/><br/>
-        Run 2 was taken as the final score given that it was the better of two runs. Given that we were able to rescue all but one Victim marker, we can conclude that our test environment was a good gauge of the actual Playing Field, with our search strategies and target detection working as intended in the actual competition.
+        Run 2 was taken as the final score, as it yielded the better result of the two runs. In the known area, all three victims were successfully rescued in Run 2, demonstrating that the search strategy in this area is both robust and reliable. The strategy in the Pillar Area also performed well, successfully rescuing the one bonus victim across both runs.
+        <br/><br/>
+        However, the bonus victim in the unknown area could not be rescued in either run. One contributing factor was that not all drones managed to enter the unknown area, as some failed to detect the navigation aid that signalled them to turn in. Even those that did enter were unable to conduct a complete search of the area. This suggests that certain aspects of the strategy for the unknown area could have been further refined and optimised to improve the chances of rescuing the victim more reliably.
         <br/><br/>
       </p>
-        
         <image-component tag="image" source="./assets/section-9-full-scale-testing/team_photo.jpg"
                          subtitle="Figure 9.2: Successful SAFMC 2025!"></image-component>
+        <br/><br/>
+        On the 6th of April 2025, we attended the results ceremony at STUD. We are pleased to announce that we came in [INSERT_ACTUAL_PLACE] in SAFMC 2025!
       </div>
     </div>
 
