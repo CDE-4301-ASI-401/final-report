@@ -1,10 +1,11 @@
 new gridjs.Grid({
   columns: ["", "Run 1", "Run 2", "Run 3"],
   data: [
-    ["Victims Rescued (+5)", "0/6", "1/6", "2/6"],
-    ["Bonus Victims Rescued (+15)", "0/2", "1/2", "1/2"],
+    ["Victims Rescued (+5) – placed in Known Area", "0/6", "1/6", "1/6"],
+    ["Bonus Victim Rescued (+15) – placed in unknown area", "0/1", "0/1", "1/1"],
+    ["Bonus Victim Rescued (+15) – placed in pillar area", "0/1", "1/1", "1/1"],
     ["Danger Zones landed near (-3)", "0/4", "0/4", "0/4"],
-    ["Total Score", "0", "20", "25"],
+    ["Total Score", "0", "20", "35"],
   ],
 }).render(document.getElementById("rc4-test-scores"));
 
