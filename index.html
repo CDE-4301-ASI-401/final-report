@@ -63,6 +63,7 @@
       <li><a href="#title"onclick="showSection('title')">Title</a></li>
       <li><a href="#acknowledgements"onclick="showSection('acknowledgements')">Acknowledgements</a></li>
       <li><a href="#table-of-abbreviation"onclick="showSection('table-of-abbreviation')">Table Of Abbreviations</a></li>
+      <li><a href="#safmc-2025-competition-video"onclick="showSection('safmc-2025-competition-video')">SAFMC 2025 Competition Video</a></li>
   
       <li>
         <a href="#section-header-1" onclick="showSection('section-header-1')">1. Singapore Amazing Flying Competition 2025</a>
@@ -282,17 +283,18 @@
     <div class="table-of-abbreviations">
       <h2>Table of Abbreviations</h2>
       <div id="table-of-abbreviation"></div>
-
     </div>
+
+    <div class="safmc-2025-competition-video">
     <br/><br/>
+      <div id="safmc-2025-competition-video"></div>
     <h2>SAFMC 2025 Competition Video</h2>
     <h3>Credits: Dylan Khoo (UREx Team Member)</h3>
-
-
     <video-component-with-sound
             source="https://www.youtube.com/embed/XGPAL6tEHRM?si=YUXf7Rwzba4o0ClW"
             subtitle="SAFMC 2025 Competition Video">
     </video-component-with-sound>
+    </div>
     
     <br />
     <br />
@@ -1209,7 +1211,7 @@
           <h3>7.3 Testing of Search Strategies Within</h3>
         <p>  
           Without Inner Walls to follow, the search strategy relies on using the Pillars to localise the path of the drones as it flies within the area. A few methods were considered:
-          <br/>
+          <br/><br/>
           A.	Using the MSBA wall following algorithm, but with changes to its speed
           <br/>
           One method explored was to use the same MSBA wall following algorithm with the speed reduced to 0.2 m/s. This worked on the theory that the drone would interpret the Pillars as walls till it comes to free space again, where it would return to its original heading. However, it was found that the drones would follow the Pillar’s circumference as a wall and end up going in an infinite loop.
@@ -1236,22 +1238,25 @@
           <image-component tag="image" source="./assets/section-7-pillar-area/figure_7_6_strat_C.png"
           subtitle="Figure 7.6: Description of Search Strategy C"></image-component>
           <br/>
+          Comparing the three solutions and their characteristics, we can arrive at the following decision matrix:
+          <br/><br/>
           <decision-matrix-pillar subtitle="Table 7.1: Comparison of three search strategies considered">
             <div id="decision-matrix-pillar"></div>
           </decision-matrix-pillar>
+          Given that Solution C is the method that would allow us to maximise the reliability and robustness of the algorithm, it is chosen as our search strategy for the pillar area.
           </div>
 
         <div id="sub-section-7-header-4">
           <h3>7.4 Testing of Victim placement</h3>
-          In the Pillar Area, targets were placed in different locations and the algorithm tested to ascertain the effectiveness of it to pick up the targets.
-          <br/>
+          In the Pillar Area, Victim Markers were placed in different locations. We then tested the search algorithm's effectiveness in rescuing them in each position.
+          <br/><br/>
           1.	Victim Marker in free space
           <br/>
           Victim Marker are placed in the middle of the Pillar Area in free space. Drones are seen to be able to detect and rescue these victims
           <br/>
           <image-component tag="image" source="./assets/section-7-pillar-area/victim_free_space.png"
                            subtitle="Figure 7.7: Victim in free space"></image-component>
-          2.	Victim in front of the pillar
+          2.	Victim in front of the Pillar
           <br/>
           Another configuration involved placing the victim marker directly in front of the pillar. Similarly to the one in free space, the drones had no issues picking up the victims in front of the pillar.
           <br/>
