@@ -342,7 +342,7 @@
         </p>
 
         <image-full tag="image" source="./assets/section-1-safmc2025/figure_1_1_SAFMC_2025_playing_field.png"
-                         subtitle="Figure 1.1: Indoor Arena of SAFMC 2022"></image-full>
+                         subtitle="Figure 1.1: Indoor Arena of SAFMC 2025"></image-full>
         <p>
            The Playing Field has a size of 20 m x 14 m. The Start Area (green) has a size of 20 m x 6 m. 
         </p>
@@ -369,7 +369,7 @@
         <h4>1.2.2 Unknown Search Area</h4>
 
         <image-component tag="image" source="assets\section-1-safmc2025\figure_1_3_unknown_search_area.png"
-        subtitle="Figure 1.3: UnKnown Search Area"></image-component>  
+        subtitle="Figure 1.3: Unknown Search Area"></image-component>  
 
       <p>
         The Unknown Search Area have the size of 8 m x 8 m and is situated in the centre of the Playing Field.
@@ -406,7 +406,7 @@
         subtitle="Figure 1.5: Specifications of Victim Markers"></image-component>
 
         <p>
-          For SAFMC 2025, up to eight non-electronic markers was used as Victim Markers. The specifications of the Victim Markers must not exceed 30 cm x 30 cm x 1 m.
+          For SAFMC 2025, up to eight non-electronic markers were used as Victim Markers. The specifications of the Victim Markers must not exceed 30 cm x 30 cm x 1 m.
         </p>
         <p>
           Both Regular Victim and Bonus Victim share the same type of Victim Markers. Bonus Victims are situated in areas that are more challenging to navigate.
@@ -431,7 +431,7 @@
         <image-component tag="image" source="assets\section-1-safmc2025\figure_1_7_specifications_of_danger_zones.png"
         subtitle="Figure 1.7: Specifications of Danger Zones"></image-component>
         <p>
-          For SAFMC 2025, up to four non-electronic markers was used as Danger Zones. The specifications of the Danger Zones must not exceed 30 cm x 30 cm x 1 m.
+          For SAFMC 2025, up to four non-electronic markers were used as Danger Zones. The specifications of the Danger Zones must not exceed 30 cm x 30 cm x 1 m.
         </p>
         
         <image-component tag="image" source="assets\section-1-safmc2025\figure_1_8_penalty_process_avoid_danger_zones.png"
@@ -464,7 +464,7 @@
         subtitle="Figure 1.10: Specifications of Pillar Obstacles"></image-component>
 
         <p>
-          Eight Pillar Obstacles was presented in the Pillar Area. Pillar Obstacles have the dimensions of 0.3 m diameter and 2 m height, inclusive of a weighted circular base of 0.5 m diameter and 0.15 m height.
+          Eight Pillar Obstacles were presented in the Pillar Area. Pillar Obstacles have the dimensions of 0.3 m diameter and 2 m height, inclusive of a weighted circular base of 0.5 m diameter and 0.15 m height.
         </p>
       
       </div>
@@ -488,7 +488,7 @@
           </p>
           
         <p>
-          Additionally, a maximum of four Danger Zones is introduced for SAFMC 2025. Ten Navigation Aids are allowed within the Known Search Area and no Navigation Aids are allowed within the Unknown Search Area.
+          Additionally, a maximum of four Danger Zones is introduced for SAFMC 2025. Ten Navigation Aids are allowed within the Known Search Area and no Navigation Aids are allowed within the Unknown Search Area. There are no limits on the number of Navigation Aids in the Start Area.
           </p>
 
       </div>
@@ -510,6 +510,10 @@
         </p>
         <p>
           For collision avoidance, the ”Two-Lane” method was implemented. This method, while offering basic separation, lacked adaptability and remained sensitive to localization inaccuracies, especially as flight time increased.
+        </p>
+
+        <p>
+          By understanding the strategy used by the SAFMC 2024 team, we will later discuss the changes our team implemented to address the limitations observed in their approach.
         </p>
         </div>
     </div>
@@ -590,8 +594,11 @@
       A decision matrix was created to aid the object selection decision (Table 3.1). Objects refer to Navigation Aids, Victim Markers and Danger Zones, weighing factors crucial for competition success under tight time constraints.
     </p>
 
+      <image-component tag="image" source="./assets/white_rect.png"
+      subtitle="Table 3.1 : Decision Matrix for Object Selection "></image-component>
+
       <image-full tag="image" source="./assets/section-3-obj-detection/table_3_1_decision matrix.png"
-      subtitle="Table 3.1 : Decision Matrix for Target and Danger Zone Selection "></image-full>
+      subtitle=" "></image-full>
 
       <p>
         Given the project timeline and the breadth of subsystems required (Navigation Aids, Search Strategies, Mission Planning), solutions demanding extensive development time or complex integration were heavily penalized. Reliability was weighted lowest at this initial selection stage, assuming implementation quality would determine final reliability. Depending on the target type, the approach for object detection varies significantly.
@@ -600,10 +607,10 @@
         One possible approach we want to investigate was using Convolutional Neural Networks (CNN) detect simple objects such as cones. While a CNN model can be trained successfully for object detection, its detection accuracy is heavily dependent on the environment of both the training and testing data. There was also limited training data consisting of images of the specific cones taken by the HM01B0 monochromatic camera. As the competition location was revealed very close to actual competition date, using cones as a target introduced additional complexity as well as reduced feasibility. From feedback provided by the SAFMC 2024 team, we noted that Bitcraze had a face detection example that used two classes of objects, controlled via a GCS. However, this example had not been tested onboard, and there was a need to expand the system to classify more than 10 different object classes (Bitcraze, n.d.) for our system needs.
       </p>
       <p>
-        Another possible approach we want to investigate was using Bitcraze’s Loco Positioning Deck which uses Ultra-wideband system to detect Loco Positioning anchors. However, the Loco Positioning System is expensive (Bitcraze, n.d.), with maximum detection range of 8 m to 10 m indoors (Bitcraze, n.d.). The Loco Positioning System was not feasible for a 20 m x 20 m playing field, as it would require multiple Loco Positioning anchors (to act as Navigation Aids) scattered throughout the field. Additionally, competition rules states that Navigation Aids may be electronic but both Danger Zones and Victim Markers must not be electronic. With our Crazyflie drones already upgraded with three decks, the male header pins are too short to accommodate an additional deck.
+        Another possible approach we want to investigate was using Bitcraze’s Loco Positioning Deck which uses Ultra-wideband system to detect Loco Positioning anchors. However, the Loco Positioning System is expensive (Bitcraze, n.d.), with maximum detection range of 8 m to 10 m indoors (Bitcraze, n.d.). The Loco Positioning System was not feasible for a 20 m x 20 m playing field, as it would require multiple Loco Positioning anchors (to act as Navigation Aids) scattered throughout the field. Additionally, competition rules states that Navigation Aids may be electronic but both Danger Zones and Victim Markers must not be electronic. With our Crazyflie drones already upgraded with three decks, the thrust provided by the propellers is unable to support the weight of the additional deck, providing constraints. 
       </p>
       <p>
-        The object chosen is AprilTags (Figure 3.2). AprilTags are visual fiducial markers used in applications such as camera calibration. AprilTags are chosen because it is more accurate than other markers such as WhyCon (Robotics Knowledgebase, n.d.). They meet the non-electronic requirement for Victim Markers and Danger Zones, are cheap, easy to create/print, and reliable under varying lighting conditions (compared to simple colour/shape detection). It allows calculation of the exact position, orientation and identity of a marker relative to a camera. Furthermore, it allows the user to specify a list of markers to detect and have existing ROS support.
+        The object chosen is AprilTags (Figure 3.1). AprilTags are visual fiducial markers used in applications such as camera calibration. AprilTags are chosen because it is more accurate than other markers such as WhyCon (Robotics Knowledgebase, n.d.). They meet the non-electronic requirement for Victim Markers and Danger Zones, are cheap, easy to create/print, and reliable under varying lighting conditions (compared to simple colour/shape detection). It allows calculation of the exact position, orientation and identity of a marker relative to a camera. Furthermore, it allows the user to specify a list of markers to detect and have existing ROS support.
       </p>
       <p>
         AprilTags are used as Victim Markers for SAFMC 2024 and SAFMC 2025. For SAFMC 2025, they are markers for Danger Zones and Navigation Aids. An exploration of on-board and off-board detection of AprilTags is then conducted.
@@ -638,7 +645,7 @@
       <p>
         The GAP8 on the AI Deck has a modifiable application layer, which can be modified to enable image streaming capabilities over Wi-Fi (Bitcraze, n.d.) and include AprilTag detection using an open-source repository (Bitcraze, n.d.). On-board image processing involves modifying the existing image streaming capability to include AprilTag detection capabilities. The GAP8 RISC-V GNU processor runs on the FreeRTOS Operating System, but the FreeRTOS is not Portable Operating System Interface (POSIX) compliant, meaning that standard POSIX functions for threading and mutex creation are unavailable.</p>
       <p>
-        Since the AprilTag library relies on POSIX functions for threading and creating mutexes, a FreeRTOS-plus-POSIX wrapper was explored (FreeRTOS, n.d.). The FreeRTOS-Plus-POSIX wrapper implements a limited subset of the POSIX threading API, which allows us to develop a FreeRTOS application using POSIX like threading primitives. However, this wrapper only implements about 20% of the POSIX API, making it insufficient for the GAP8’s requirements, and ultimately, it did not work as intended. Attempts with alternative libraries yielded similar POSIX-dependency issues.
+        The main challenge was that the AprilTag library depends heavily on POSIX functions, particularly for threading and mutex creation, which are not natively supported by FreeRTOS. To address this, a FreeRTOS-plus-POSIX wrapper was explored (FreeRTOS, n.d.), which implements a limited subset of the POSIX threading API. This wrapper was intended to allow the development of FreeRTOS applications using POSIX-like threading primitives. However, it supports only about 20% of the full POSIX API, which proved insufficient for the GAP8’s requirements, and the solution ultimately did not work as intended. Further attempts using alternative libraries encountered similar POSIX-dependency issues, preventing successful integration.
       </p>
       <p>
         The next step was to manually refactor all POSIX functions in the AprilTag library with their FreeRTOS equivalents.
@@ -654,14 +661,14 @@
     <div id="sub-section-3-header-3">
         <h3>3.3 Offboard Detection</h3>
         <p>
-          For off-board detection, four repositories were found online (TL-NUS-CFS, 2023, Rauch, 2025, Rauch, 2025 and CDE-4301-ASI-401, n.d.). <i>ai_deck_wrapper</i> enables image streaming and integrates with <i>apriltag_ros</i> which handles AprilTag detection. <i>apriltag_msgs</i> defines the message type for communication between the AI deck wrapper node and the AprilTag node. The primary repository we worked with is the MissionPlanner, which supports the implementation of our mission strategy.
+          For off-board detection, four relevant repositories were identified online: <i>ai_deck_wrapper</i> (TL-NUS-CFS, 2023), <i>apriltag_ros</i> (Rauch, 2025), <i>apriltag_msgs</i> (Rauch, 2025), and <i>MissionPlanner</i> (CDE-4301-ASI-401, n.d.). The <i>ai_deck_wrapper</i> repository enables image streaming and integrates with <i>apriltag_ros</i>, which handles AprilTag detection. <i>apriltag_msgs</i> defines the message types used for communication between the AI Deck wrapper node and the AprilTag detection node. The primary repository utilized in our development was <i>MissionPlanner</i>, which supports the implementation of our mission strategy.
         </p>
         <video-component 
         source="https://www.youtube.com/embed/No0juLGqdLo" 
         subtitle="Figure 3.2: Video of Object Detection for One Crazyflie">
     </video-component>
         <p>
-          The test for object detection (Figure 3.2) was conducted in the Computer Vision room at Temasek Laboratories. In this test, the Crazyflie takes off to search for one Victim Marker autonomously. The Crazyflie flies over the Danger Zone (AprilTag in the middle of the room) and rescuing the victim (AprilTag at the end of the room). The Search Algorithm used in this test was Modified Swarm Bug Algorithm. The angle of the camera mount was 45°.
+          The test for object detection (Figure 3.2) was conducted in the seminar room at RC4. In this test, the Crazyflie takes off to search for one Victim Marker autonomously. The Crazyflie flies over the Danger Zone (AprilTag in the middle of the room) and rescuing the victim (AprilTag at the end of the room). The search algorithm used in this test was Modified Swarm Bug Algorithm. The angle of the camera mount was 45°.
         </p>
         <p>
           This test confirms that the Crazyflie successfully maintains a distance within the 1 m radius of the Victim Marker, achieves a successful rescue by landing near the Victim Marker, and accurately detects the Danger Zone without landing within it.
@@ -704,7 +711,7 @@
       </p>
       
       <image-full tag="image" source="./assets/section-3-obj-detection/figure_3_5_graph_distance_vs_height.png"
-      subtitle="Figure 3.5: Graph of Vertical Distance from AprilTag (cm) vs Height (m)"></image-full>
+      subtitle="Figure 3.5: Graph of Vertical Distance from AprilTag (cm) vs Height (cm)"></image-full>
       <p>
         To counteract the system latency caused by image transmission, GCS processing amd CPX command, a fixed delay was introduced in the <i>mission_planner.py</i> script after a Victim Marker is detected but before the land command is sent. This allows the drone to fly slightly further, positioning itself more directly over the Victim Marker by the time the land command executes. The test involved repeatedly flying the drones with the delay implemented and then taking the average results to determine the most effective delay time. 1 second delay was chosen. Without delay, the detection distance will be 63.5 cm.
       </p>
