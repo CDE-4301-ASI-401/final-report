@@ -1333,7 +1333,7 @@
           <br/>
           <h3>7.2 Mock-Up of the Pillar Area</h3>
         <p>
-          To test the Pillar Area, we need to build a mock-up of 8 Pillars in the area for our drones to navigate through. This was achieved using Styrofoam boards, which were tested to ensure that the drones can detect them while flying and can also fly in a stable manner near them. Both were found to be satisfactory with our Crazyflie drones. The dimensions of the pillar are about 25-30cm in diameter, a close approximation of the competition pillars that would be of diameter 30cm. The height of the pillar are about 30-40cm, tall enough for our initially planned flying altitude of 30cm.
+          To test the Pillar Area, we need to build a mock-up of eight Pillars in the area for our drones to navigate through. This was achieved using Styrofoam cylinders, which were tested to ensure that the drones can detect them while flying and can also fly in a stable manner near them. Both were found to be satisfactory with our Crazyflie drones. The dimensions of the pillar are about 25-30cm in diameter, a close approximation of the competition pillars that would be of diameter 30cm. The height of the pillar are about 30-40cm, tall enough for our initially planned flying altitude of 30cm.
         </p>
           <br/><br/>
 
@@ -1343,7 +1343,9 @@
 
           <image-component tag="image" source="./assets/section-7-pillar-area/figure_7_3_testing_pillar_area.jpg"
           subtitle="Figure 7.3: Testing Of Pillar Area in IDP Studio 1"></image-component>
+          <p>
           <br/>Later, the flying height was adjusted to 80cm which was found to be more robust and reliable. To support this new flying height, pillars were placed on chairs as seen in Fig 7.3 that were about 75cm in height. The pillar would now be in the range of 75 – 115cm off the ground.
+          </p>
 
         </div>
         <div id="sub-section-7-header-3">
@@ -1352,7 +1354,7 @@
           Without Inner Walls to follow, the search strategy relies on using the Pillars to localise the path of the drones as it flies within the area. A few methods were considered:
           <br/><br/>
           A.	Using the MSBA wall following algorithm, but with changes to its speed
-          <br/>
+          <br/><br/>
           One method explored was to use the same MSBA wall following algorithm with the speed reduced to 0.2 m/s. This worked on the theory that the drone would interpret the Pillars as walls till it comes to free space again, where it would return to its original heading. However, it was found that the drones would follow the Pillar’s circumference as a wall and end up going in an infinite loop.
           <br/>
         </p>
@@ -1361,7 +1363,7 @@
           <br/>
         <p>
           B.	Using an algorithm that follows the preferred direction till meeting a Pillar, avoiding it by following the circumference
-          <br/>
+          <br/><br/>
           This method would involve having the drone first fly forward (which is its preferred direction) until it encounters a Pillar head-on, at which time it would avoid the Pillar by flying in a circular path following the walls of the Pillar. It would then resume its original heading after doing so in the new lane that it has corrected its flight path to. However, it tends to drift and cut the Pillar while doing so.
           <br/>
         </p>
@@ -1370,7 +1372,7 @@
           <br/>
         <p>
           C.	Using an algorithm that follows the preferred direction till meeting a Pillar, and avoids by turning on the spot
-          <br/>
+          <br/><br/>
           Similarly to method B, the drones would fly in the preferred direction until it meets a Pillar head on. However, unlike the previous method, it would turn on the spot to the left or right by 90 ° and move for a short distance before turning back by another 90 ° to resume its flight in the original heading. This would avoid it cutting the Pillar while doing its “avoidance”, and is a solution developed together with David Chong, an Undergraduate Research Experience (UREx) student working alongside us on our project.
           <br/>
         </p>
@@ -1433,7 +1435,7 @@
             <h4>7.5.2 Optimising the speed of the drones</h4>
           <p>
             Another parameter that we sought to optimise was the speed of the drones while flying within the pillar zone. Flying faster would mean that we are able to complete the mission in a quicker time, but would also increase the chance of crashing into pillars due to either slow or non-detection of the pillars while flying. This happens as the drones do require a processing time between detecting the pillars and avoiding it, and flying too fast would mean that the drones would crash into pillars before they are able to avoid it. Flying too slowly however would cause the mission to take too much time to complete.
-            <br/>
+            <br/><br/>
             A speed of 0.5m/s was initially chosen. However, this was too fast leading to frequent crashes with drones. 0.2m/s was found to work well, but too slow. <b>0.3m/s</b> was later found to be the optimal speed balancing speed with reliability of the algorithm.
             <br/>
           </p>
@@ -1444,8 +1446,8 @@
           <p>
             Given the Pillar drones are optimised to carry out search and rescue in the Pillar Area, it should spend the duration of the mission searching the Pillar Area instead of drifting to other zones. Navigation Aids are therefore used at the end of the Pillar Area to send a command to reverse, which is like that employed in the Known Search Area. This would keep the drones “within” this area where it is best suited to search and capture targets that may have been placed directly behind a Pillar and missed in the first run.
           </p>
-            <image-component tag="image" source="./assets/section-7-pillar-area/figure_7_8_reverse.png"
-            subtitle="Figure 7.11: Reverse"></image-component>
+            <image-full tag="image" source="./assets/section-7-pillar-area/figure_7_8_reverse.png"
+            subtitle="Figure 7.11: Reverse"></image-full>
 
           </div>
           <div id="sub-section-7-header-5-header-4">
@@ -1454,8 +1456,8 @@
             The last parameter that we considered was whether the drone should fly in a straight-line path or a zig-zag one (as seen in the images below):
             <br/>
           </p>
-            <image-component tag="image" source="./assets/section-7-pillar-area/straight-vs-zigzag.png"
-                             subtitle="Figure 7.12: Straight-line vs Zig-zag flight path"></image-component>
+            <image-full tag="image" source="./assets/section-7-pillar-area/straight-vs-zigzag.png"
+                             subtitle="Figure 7.12: Straight-line vs Zig-zag flight path"></image-full>
             <br/>
           <p>
             By following a zig-zag path, we can increase the field of view of the camera with an intent to increase the reliability of target detection. However, this comes at the cost of more frequent crashes and an unpredictable flight path. After our testing, we found that this was not a good change and a straight line path would be more desirable given the trade-offs.
@@ -1468,12 +1470,12 @@
         <p>
           Putting all together, we now have the following algorithm for search and rescue within the Playing Field for a single drone.
           <br/>
-          <image-component tag="image" source="./assets/section-7-pillar-area/figure_7_9_1_full_algo.png"
-          subtitle="Figure 7.13: Full Algorithm"></image-component>
+          <image-full tag="image" source="./assets/section-7-pillar-area/figure_7_9_1_full_algo.png"
+          subtitle="Figure 7.13: Full Algorithm"></image-full>
           <br/>
         </p>
         <p>
-          Based on our testing as seen in Figure 7.11, 3 drones flying with this algorithm are needed to achieve full search coverage of the pillar area while remaining robust and reliable. Any fewer drones would cause some search areas to be left uncovered, while allocating more drones may increase the chance of drone-to-drone collisions which would be counterproductive.
+          Based on our testing, three drones flying with this algorithm are needed to achieve full search coverage of the pillar area while remaining robust and reliable (Figure 7.14). Any fewer drones would cause some search areas to be left uncovered, while allocating more drones may increase the chance of drone-to-drone collisions which would be counterproductive.
           <br/>
         <p>
           <image-component tag="image" source="./assets/section-7-pillar-area/figure_7_9_2_full_algo.png"
@@ -1607,9 +1609,9 @@
       <div id="sub-section-9-header-1-header-1">
         <h4>9.1.1 Network and Bandwidth Issues</h4>
       <p>
-        The original plan was to set up one central computer to manage all drones in the Playing Field, and it would do so on one Wi-Fi network with 3 routers. This would be up to 20 drones managed on one central system. While this was not an issue with individual system testing using up to 10 drones, it did not perform well with 20 at once which could have been due to overloading of the bandwidth. Drones would often either not connect to the Wi-Fi or do so then disconnect mid-flight. Once the Wi-Fi disconnects, the drones can no longer send images from the camera to the central system to process which means that it would not be able to rescue any victims.
+        The original plan was to set up one central computer to manage all drones in the Playing Field, and it would do so on one Wi-Fi network with three routers. This would be up to 20 drones managed on one central system. While this was not an issue with individual system testing using up to 10 drones, it did not perform well with 20 at once which could have been due to overloading of the bandwidth. Drones would often either not connect to the Wi-Fi or do so then disconnect mid-flight. Once the Wi-Fi disconnects, the drones can no longer send images from the camera to the central system to process which means that it would not be able to rescue any victims.
         <br/><br/>
-        Eventually, a decision was made to change de-link the network into 3 separate components that would be controlled by 3 separate computers. This worked much better and gave us the assurance that the system would be reliable moving into the competition day. More details regarding the changes can be found in Section 3.6.
+        Eventually, a decision was made to change de-link the network into three separate components that would be controlled by three separate computers. This worked much better and gave us the assurance that the system would be reliable moving into the competition day. More details regarding the changes can be found in Section 3.6.
       </p>
 
       </div>
@@ -1618,9 +1620,9 @@
         <h4>9.1.2 Different Performance of the Drones in Different Conditions</h4>
         
       <p>
-        Moving to RC4 MPSH, there were a few changes in conditions. First, the floor posed new challenges as it was shinier than the one seen in our IDP studio. This led to undefined behaviour of the drones, including speed-ups and inconsistent altitude observed. The drones were therefore not able to rescue Victim Markers or did so inconsistently, given that the speed varied drastically mid-flight.
+        Moving to RC4 MPSH, there were a few changes in conditions. First, the floor posed new challenges as it was shinier than the one seen in our iDP studio. This led to undefined behaviour of the drones, including speed-ups and inconsistent altitude observed. The drones were therefore not able to rescue Victim Markers or did so inconsistently, given that the speed varied drastically mid-flight.
         <br/><br/>
-        To counter this, we had to vary the distance of the drones to ensure the stable performance of them within the RC4 MPSH. By flying them higher, this would allow us to counter the effect of the reflective surface given that the drones are further from the ground.  By increasing the altitude from the original 30 cm to 50-80 cm, the drones were seen to perform in a much more stable manner. It could then fly in a much more predictable fashion allowing a more reliable search and rescue. More details about the changes made were mentioned in Sections 5, 6 and 7 detailing the optimisation to the drone’s parameters after testing.
+        To counter this, we had to vary the distance of the drones to ensure the stable performance of them within the RC4 MPSH. By flying them higher, this would allow us to counter the effect of the reflective surface given that the drones are further from the ground.  By increasing the altitude from the original 30 cm to 50-80 cm, the drones were seen to perform in a much more stable manner. It could then fly in a much more predictable fashion allowing a more reliable search and rescue. More details about the changes made were mentioned in Sections 5, 6 and 7 detailing the optimisation to the drone’s parameters in each section (Known, Unknown, Pillar Areas) after testing.
       </p>
 
       </div>
@@ -1659,7 +1661,7 @@
         <br/><br/>
         
       <p>
-        We were given two runs to test our drone swarm system with the better of the two runs taken as the final score. A total of 5 Victim Markers (of possible 8 as given in the rules) were used on the actual day, and likewise 3 Danger Zones (of possible 4) were used. The location of the Victim Markers and Danger Zones were not made known to us before placing our drones down and were only placed in the Playing Field after deciding on the placement of drones in the Playing Field. We only knew that the two Bonus Victims would be placed in the Pillar and Unknown Search Areas (one each) while the rest of the Regular Victims could be placed anywhere in the Playing Field.
+        We were given two runs to test our drone swarm system with the better of the two runs taken as the final score. A total of five Victim Markers (of possible eight as given in the rules) were used on the actual day, and likewise three Danger Zones (of possible four) were used. The location of the Victim Markers and Danger Zones were not made known to us before placing our drones down and were only placed in the Playing Field after deciding on the placement of drones in the Playing Field. We only knew that the two Bonus Victims would be placed in the Pillar and Unknown Search Areas (one each) while the rest of the Regular Victims could be placed anywhere in the Playing Field.
       </p>
         <br/><br/>
         <image-component tag="image" source="./assets/section-9-full-scale-testing/drone_takeoff.png"
@@ -1691,7 +1693,7 @@
         <image-component tag="image" source="./assets/section-9-full-scale-testing/team_photo.jpg"
                          subtitle="Figure 9.10: Successful SAFMC 2025!"></image-component>
         <br/><br/>
-        On the 5th of April 2025, we attended the results ceremony at STUD. We are pleased to announce that we came in 3rd Runner Up in SAFMC 2025 Category E!
+        On the 5th of April 2025, we attended the prize-presentation ceremony at the Singapore University of Technology and Design (SUTD). We are pleased to announce that we came in 3rd Runner Up in SAFMC 2025 Category E!
       </div>
     </div>
 
