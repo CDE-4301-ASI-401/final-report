@@ -1,50 +1,52 @@
 
 // function showSection(sectionId) {
-//     // Hide all sections
+//     // Hide all .section elements
 //     document.querySelectorAll('.section').forEach((section) => {
-//         section.style.display = 'none'; // Hide all sections
+//         section.style.display = 'none';
 //     });
+
+//     // Ensure main-content is visible
+//     const mainContent = document.getElementById('main-content');
+//     if (mainContent) {
+//         mainContent.style.display = 'block';
+//     }
 
 //     // Show the clicked section
 //     const section = document.getElementById(sectionId);
 //     if (section) {
 //         section.style.display = 'block';
+//         section.scrollIntoView({ behavior: 'instant' }); // Optional
 //     }
 
 //     // Highlight the active link
 //     document.querySelectorAll('.sidenav a').forEach((link) => {
-//         link.classList.remove('active'); // Remove active state from all links
+//         link.classList.remove('active');
 //     });
 
 //     const activeLink = document.querySelector(`.sidenav a[onclick="showSection('${sectionId}')"]`);
 //     if (activeLink) {
-//         activeLink.classList.add('active'); // Highlight the clicked link
+//         activeLink.classList.add('active');
 //     }
 // }
-
-// // Default section on page load
-// document.addEventListener('DOMContentLoaded', () => {
-//     // Show both title and acknowledgements by default
-//     document.getElementById('title').style.display = 'block';
-//     document.getElementById('acknowledgements').style.display = 'block';
-// });
-function showSection(sectionId) {
-    // Hide all .section elements
+function showSubSection(parentSectionId, subSectionId) {
+    // Hide all top-level sections
     document.querySelectorAll('.section').forEach((section) => {
         section.style.display = 'none';
     });
 
-    // Ensure main-content is visible
+    // Show parent section and main content wrapper
     const mainContent = document.getElementById('main-content');
-    if (mainContent) {
-        mainContent.style.display = 'block';
-    }
+    if (mainContent) mainContent.style.display = 'block';
 
-    // Show the clicked section
-    const section = document.getElementById(sectionId);
-    if (section) {
-        section.style.display = 'block';
-        section.scrollIntoView({ behavior: 'instant' }); // Optional
+    const parent = document.getElementById(parentSectionId);
+    if (parent) parent.style.display = 'block';
+
+    // Scroll to the subsection
+    const target = document.getElementById(subSectionId);
+    if (target) {
+        setTimeout(() => {
+            target.scrollIntoView({ behavior: 'smooth' });
+        }, 50);
     }
 
     // Highlight the active link
@@ -52,7 +54,7 @@ function showSection(sectionId) {
         link.classList.remove('active');
     });
 
-    const activeLink = document.querySelector(`.sidenav a[onclick="showSection('${sectionId}')"]`);
+    const activeLink = document.querySelector(`.sidenav a[onclick*="${subSectionId}"]`);
     if (activeLink) {
         activeLink.classList.add('active');
     }
