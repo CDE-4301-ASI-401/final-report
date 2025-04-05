@@ -133,7 +133,7 @@
           <li><a href="#sub-section-5-header-3" onclick="showSubSection('section-header-5', 'sub-section-5-header-3')">5.3 Initial Proposal Strategy Using MSBA</a></li>
           <li><a href="#sub-section-5-header-4" onclick="showSubSection('section-header-5', 'sub-section-5-header-4')">5.4 Simulation to Evaluate Search Strategy</a></li>
           <li><a href="#sub-section-5-header-5" onclick="showSubSection('section-header-5', 'sub-section-5-header-5')">5.5 Improvements to MSBA</a></li>
-          <li><a href="#sub-section-5-header-6" onclick="showSubSection('section-header-5', 'sub-section-5-header-6')">5.6 Real Life Testing</a></li>
+          <li><a href="#sub-section-5-header-6" onclick="showSubSection('section-header-5', 'sub-section-5-header-6')">5.6 Real World Testing</a></li>
           <li><a href="#sub-section-5-header-7" onclick="showSubSection('section-header-5', 'sub-section-5-header-7')">5.7 Final MSBA Parameters</a></li>
 
         </ul>
@@ -158,7 +158,7 @@
               <li><a href="#sub-section-6-header-4-header-2" onclick="showSubSection('section-header-6', 'sub-section-6-header-4-header-2')">6.4.2 MSBA for Searching the Unknown Search Area</a></li>
             </ul>
           </li>     
-          <li><a href="#sub-section-6-header-5" onclick="showSubSection('section-header-6', 'sub-section-6-header-5')">6.5 Real Life Testing (Yan Yew)</a></li>
+          <li><a href="#sub-section-6-header-5" onclick="showSubSection('section-header-6', 'sub-section-6-header-5')">6.5 Real World Testing (Yan Yew)</a></li>
 
         </ul>
       </li>
@@ -1024,7 +1024,7 @@
   </div>
 
   <div id="sub-section-5-header-6">
-    <h3>5.6 Real Life Testing</h3>
+    <h3>5.6 Real World Testing</h3>
       <p>
         To validate the MSBA implementation and further optimize flight parameters, a series of real-world tests were conducted in three different environments, where 1 m by 1 m cardboards are used to create wall obstacles:
       </p>
@@ -1113,12 +1113,12 @@
           subtitle="Figure 6.4: Obstructed TOF sensor on Crazyflie’s Mult-Ranger deck"></image-component>
           <br><br>
           <image-component tag="image" source="./assets/section-6-unknown-area/figure_6_4_SLAM_Single_Crazyflie.png"
-          subtitle="Figure 6.5:Occupancy map produced by Crazyflie performing wall-following in three separate runs"></image-component>
+          subtitle="Figure 6.5: Occupancy map produced by Crazyflie performing wall-following in three separate runs"></image-component>
           <p>
             With a single Crazyflie producing a reliable SLAM map, the next step was to evaluate multi-drone SLAM by merging occupancy maps from multiple Crazyflies. To achieve this, the ROS2 Merge Map package was integrated into the system. This ROS2 node subscribes to multiple map topics and publishes a single merged occupancy map, allowing the GCS to construct a complete map of the environment. The final implementation can be found in our <a href="https://github.com/CDE-4301-ASI-401/Multi-Drone-SLAM-and-Merge-Map">Multi-Drone SLAM and Merge Map Github repository</a>.
           </p>
           <p>
-            To test the multi-drone SLAM and map merging implementation, two Crazyflies were deployed in a 4 m by 4m enclosed space, performing SLAM while wall-following in opposite directions. Initially, after both drones completed their first loop, the merged map was accurate and closely matched the actual environment. However, as the drones continued to complete additional loops, the mapped environment began to drift over time, leading to misalignment in the final merged map (Figure 6.X). This issue was attributed to drift in the individual Crazyflie’s optical flow sensor readings. As the drones continued wall-following around the enclosed space, positional errors accumulated significantly, causing increasing discrepancies between the mapped and actual environments.
+            To test the multi-drone SLAM and map merging implementation, two Crazyflies were deployed in a 4 m by 4m enclosed space, performing SLAM while wall-following in opposite directions. Initially, after both drones completed their first loop, the merged map was accurate and closely matched the actual environment. However, as the drones continued to complete additional loops, the mapped environment began to drift over time, leading to misalignment in the final merged map (Figure 6.7). This issue was attributed to drift in the individual Crazyflie’s optical flow sensor readings. As the drones continued wall-following around the enclosed space, positional errors accumulated significantly, causing increasing discrepancies between the mapped and actual environments.
           </p>
           <image-component tag="image" source="./assets/section-6-unknown-area/figure_6_5_Two_Crazyflie_SLAM_environment.png"
           subtitle="Figure 6.6:Test environment to evaluate the performance of Crazyflie SLAM using onboard multi-ranger deck"></image-component>
@@ -1222,12 +1222,12 @@
               To achieve the desired paths, Navigation Aids will be placed on point A, B, and B, which will be referred to Tag A, Tag B, and Tag C respectively. Whenever these tags are seen by the drones, a radio command unique to the Navigation Aid will be issued to that drone. At the Start Area, all the Unknown Search Area drones will be lined up with point A and B being straight forward to them. 
             </p>
             <p>
-              According to Figure 6.7, there are three unique possible motions that the drones would perform to enter the Unknown Search Area, namely (1) Continue straight forward, (2) Turn left, then continue straight forward, and (3) Turn left, move forward, and begin search. The pseudocode is shown in Algorithm 1, which is implemented in SGBA.c. 
+              According to Figure 6.7, there are three unique possible motions that the drones would perform to enter the Unknown Search Area, namely (1) Continue straight forward, (2) Turn left, then continue straight forward, and (3) Turn left, move forward, and begin search. The pseudocode is shown in Algorithm 1, which is implemented in <a href="https://github.com/CDE-4301-ASI-401/SGBA_CF2_App_layer/blob/competition_unknown_SGBA/SGBA.c">SGBA.c</a>. 
             </p>
             <image-component tag="image" source="./assets/section-6-unknown-area/Algorithm_1.png"
             subtitle=""></image-component>
             <p>
-              Since in Mission Planner there is only an only a one-to-one mapping of radio command to Navigation Aid. The logic to initiate the correct motion when received a radio command needs to be handled by the drone. For example, when a Group 1 drone received a radio command that corresponds to Tag A, it needs to initiate motion (3) Turn left, move forward, and begin search. Whereas a Group 2 drone receiving the same radio command should initiate motion (1) Continue straight forward. The pseudocode is included in Algorithm 2, which is implemented in state_machine.c.
+              Since in Mission Planner there is only an only a one-to-one mapping of radio command to Navigation Aid. The logic to initiate the correct motion when received a radio command needs to be handled by the drone. For example, when a Group 1 drone received a radio command that corresponds to Tag A, it needs to initiate motion (3) Turn left, move forward, and begin search. Whereas a Group 2 drone receiving the same radio command should initiate motion (1) Continue straight forward. The pseudocode is included in Algorithm 2, which is implemented in <a href="https://github.com/CDE-4301-ASI-401/SGBA_CF2_App_layer/blob/competition_unknown_SGBA/state_machine.c">state_machine.c</a>.
             </p>
             <image-component tag="image" source="./assets/section-6-unknown-area/Algorithm_2.png"
             subtitle=""></image-component>
@@ -1241,7 +1241,7 @@
               <image-component tag="image" source="./assets/section-6-unknown-area/figure_6_8_unknown_preferred_directions.png"
             subtitle="Figure 6.9: Preferred direction of MSBA drones after entering Unknown Area"></image-component>
               <p>
-                To ensure the drones remain within the Unknown Search Area, Navigation Aids placed at the Unknown Search Area openings will be used to guide them. When a drone detects these Navigation Aids, the GCS will issue the corresponding radio command packet to the drone. Once the drones have entered the Unknown Search Area and are on a path to exit, they will again detect these Navigation Aids. Upon receiving the radio command packet from the GCS, the drones' preferred direction will be adjusted to keep them within the boundaries of the Unknown Search Area. The optimal position of Navigation Aids after extensive real-world testing are shown in Figure 6.8.
+                To ensure the drones remain within the Unknown Search Area, Navigation Aids placed at the Unknown Search Area openings will be used to guide them. When a drone detects these Navigation Aids, the GCS will issue the corresponding radio command packet to the drone. Once the drones have entered the Unknown Search Area and are on a path to exit, they will again detect these Navigation Aids. Upon receiving the radio command packet from the GCS, the drones' preferred direction will be adjusted to keep them within the boundaries of the Unknown Search Area. The optimal position of Navigation Aids after extensive real-world testing are shown in Figure 6.10.
               </p>
               <image-component tag="image" source="./assets/section-6-unknown-area/Algorithm_3.png"
             subtitle=""></image-component>
