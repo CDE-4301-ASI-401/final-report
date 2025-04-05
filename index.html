@@ -894,7 +894,7 @@
         The MSBA is an adaptation of the Swarm Gradient Bug Algorithm (SGBA) developed by TU Delft. This algorithm follows an identical heuristic as bug algorithm where the drone would travel in a specific heading, then encountered an obstacle it performs wall-follow around it until its original heading is free of obstacle. This algorithm is explained in detail in Section 5.2. 
       </p>
       <p>
-        The pre-planned flight path strategy involves programming a series of predefined movements for each drone before deployment, which is possible because of the environment being known. For example, as illustrated in Figure 5.2, if we want the drone to reach point X, the drone will be programmed to fly forward. When obstacle is detected by the front ToF sensor, the drone should turn right and continue forward until it detects another obstacle using the front ToF sensor.
+        The pre-planned flight path strategy involves programming a series of predefined movements for each drone before deployment, which is possible because of the environment being known. For example, as illustrated in Figure 5.3, if we want the drone to reach point X, the drone will be programmed to fly forward. When obstacle is detected by the front ToF sensor, the drone should turn right and continue forward until it detects another obstacle using the front ToF sensor.
       </p>
 
       <image-component tag="image" source="./assets/section-5-known-area/figure_5_2_pre_planned_flight_path.png"
@@ -924,7 +924,7 @@
   <div id="sub-section-5-header-2">
   <h3>5.2 Modified Swarm Bug Algorithm</h3>
       <p>
-        MSBA is a heuristic algorithm governed by a few simple rule-based behaviour as illustrated in Figure 5.3. After take-off, the drone rotates to its preferred heading and then moves forward in that direction. Upon detecting an obstacle, it initiates wall-following until its preferred heading is clear of obstacles.
+        MSBA is a heuristic algorithm governed by a few simple rule-based behaviour as illustrated in Figure 5.4. After take-off, the drone rotates to its preferred heading and then moves forward in that direction. Upon detecting an obstacle, it initiates wall-following until its preferred heading is clear of obstacles.
       </p>
       <p>
         To prevent the Crazyflie from getting trapped in an indefinite loop, a loop detection mechanism is implemented. This mechanism modifies the preferred heading when the drone is detected to be stuck. When the Crazyflie encounters an obstacle and begins wall-following, it records the hit point using odometry data from the Flow Deck. If the drone moves toward the same hit point again, the loop detection mechanism is triggered, adjusting the navigation path to break the loop. 
@@ -942,7 +942,7 @@
         The team has allocated a total of 10 drones to search the Known Search Area. To obtain the optimal parameters, the ideal paths of the 10 drones to maximize coverage are first planned in accordance with the heuristic of the algorithm. Then the parameters required to achieve the corresponding flight paths are then determined by working backwards. 
       </p>          
       <p>
-        The strategy to perform search in the Known Search Area is illustrated in Figure 5.4. It involves deploying the drones on the left side of the Playing Field, ensuring they reach designated dispersion points—Point A, Point B, and Point C, which the drones will then fan out in their respective preferred headings. Each dispersion point is assigned three drones. To guide the drones to their respective dispersion points, they will follow a wall-following manoeuvre around Wall 1, Wall 2, and Wall 3 before dispersing into the search area. 
+        The strategy to perform search in the Known Search Area is illustrated in Figure 5.5. It involves deploying the drones on the left side of the Playing Field, ensuring they reach designated dispersion points—Point A, Point B, and Point C, which the drones will then fan out in their respective preferred headings. Each dispersion point is assigned three drones. To guide the drones to their respective dispersion points, they will follow a wall-following manoeuvre around Wall 1, Wall 2, and Wall 3 before dispersing into the search area. 
       </p>
       <p>
         The flight altitude of all drones is set to 0.3 m because real-life test flight at that height provided great flight stability. The speed of drones is set to 0.4 m/s as it is the optimal speed for stable flight performance after performing real-life testing which will be explained in later section in Section 5.6. This speed also ensures reliable AprilTag detection as tested by the Object Detection system (Section 4.4).
@@ -950,7 +950,7 @@
     <image-component tag="image" source="./assets/section-5-known-area/figure_5_4_maximise_coverage.png"
       subtitle="Figure 5.5: Strategy to maximise search coverage using 9 drones running MSBA"></image-component>
       <p>
-        For intra-drone collision avoidance strategy to prevent drone-to-drone collisions, a two-lane method was implemented. Depending on the direction of wall-following, the drones would maintain different distance to walls to create two separate lanes. Extensive real-world testing a small-scale Playing Field, along with simulations, confirmed the reliability of this strategy, provided that the drones are correctly positioned at the starting area The optimal wall distances were determined to be 0.6 m for drones performing left wall-following and 1.2 m for those performing right wall-following, as illustrated in Figure 5.5 below.
+        For intra-drone collision avoidance strategy to prevent drone-to-drone collisions, a two-lane method was implemented. Depending on the direction of wall-following, the drones would maintain different distance to walls to create two separate lanes. Extensive real-world testing a small-scale Playing Field, along with simulations, confirmed the reliability of this strategy, provided that the drones are correctly positioned at the starting area The optimal wall distances were determined to be 0.6 m for drones performing left wall-following and 1.2 m for those performing right wall-following, as illustrated in Figure 5.6 below.
       </p>
       <p>
         Additionally, the loop detection transformation angle was set to be 90 ° instead of the 180 ° proposed in the original SGBA to prevent drones from travelling straight back to the starting area. The transformation angles depend on the drones' wall-following direction and follow the right-hand rule convention: drones assigned to right wall-following adjust their preferred heading by +90 °, while those following the left wall adjust by -90 °.
@@ -959,7 +959,7 @@
         Since all the drones must take off within two waves, to ensure the drones reach their respective dispersion points safely without collision, drones belong to Point B will first take off, followed by drones that travel to Point A and Point C. This configuration will also prevent drone collisions by ensuring Point B drones to be in the forefront, followed by Point C and Point A drones that will be unlikely to collide with one another as they travel in opposite directions.
       </p>
       <p>
-        The drone configurations in the Start Area to guide the 3 separate drone groups to dispersion points A, B, C is shown below in Figure 5.5. Each drone is also assigned wall-following direction of either left or right. Drone 1, 2, 3 will first take off and travel to Point A, then followed by Drone 4, 5, 6 to Point C and Drone 7, 8, 9 to Point A. The drones in each group are arranged in a "V" formation. Reason being because based on real-life swarm drone testing, maintaining a clear LOS in the forward direction is crucial, especially during take-off. If a drone detects another drone directly in front of it, it will automatically initiate wall-following mode, potentially disrupting the planned dispersion sequence. 
+        The drone configurations in the Start Area to guide the 3 separate drone groups to dispersion points A, B, C is shown below in Figure 5.6. Each drone is also assigned wall-following direction of either left or right. Drone 1, 2, 3 will first take off and travel to Point A, then followed by Drone 4, 5, 6 to Point C and Drone 7, 8, 9 to Point A. The drones in each group are arranged in a "V" formation. Reason being because based on real-life swarm drone testing, maintaining a clear LOS in the forward direction is crucial, especially during take-off. If a drone detects another drone directly in front of it, it will automatically initiate wall-following mode, potentially disrupting the planned dispersion sequence. 
       </p>
       <image-component tag="image" source="./assets/section-5-known-area/figure_5_5_initial_configuration.png"
       subtitle="Figure 5.6: Initial configurations of drones in the start area"></image-component>
@@ -988,16 +988,16 @@
       <image-component tag="image" source="./assets/section-5-known-area/figure_5_7_firmware_webots.png"
       subtitle="Figure 5.8: Architecture diagram of simulated Crazyflie in Webots"></image-component>
       <p>
-        The competition search environment was first recreated in Webots as shown in Figure 5.8, with the static obstacles being placed according to the Playing Field layout illustrated in the competition challenge booklet while conforming to the minimum distance. Each box represents a 1 m by 1 m area. <i>Note that the orientation of the top-down view differs from the previous figures. The view in this figure is rotated clockwise by 90 °</i>.
+        The competition search environment was first recreated in Webots as shown in Figure 5.9, with the static obstacles being placed according to the Playing Field layout illustrated in the competition challenge booklet while conforming to the minimum distance. Each box represents a 1 m by 1 m area. <i>Note that the orientation of the top-down view differs from the previous figures. The view in this figure is rotated clockwise by 90 °</i>.
       </p>
       <image-component tag="image" source="./assets/section-5-known-area/figure_5_8_webots_simulation_environment.png"
       subtitle="Figure 5.9: Webots Simulation Environment"></image-component>
       
       <p>
-        The performance of the search strategy was then evaluated by simulating the drones in different Playing Field configurations. The drone paths after 4 minutes of simulation are plotted and compared using the drones position data stored in csv files and Matplotlib. The percentage of search coverage is also determined by counting the box which the swarm drone’s paths crossed in the Known Search Area overlayed in Figure 5.5. 
+        The performance of the search strategy was then evaluated by simulating the drones in different Playing Field configurations. The drone paths after 4 minutes of simulation are plotted and compared using the drones position data stored in csv files and Matplotlib. The percentage of search coverage is also determined by counting the box which the swarm drone’s paths crossed in the Known Search Area overlayed in Figure 5.9. 
       </p>
       <p>
-        In all the configurations tested, the drone swarm was able to cover most of the Known Search Area collectively, consistently achieving a search coverage above 80%. However, there are a few blind spots that would be miss by the drones. Notably, the area in corners. Figure 5.9 shows the results from 3 of the simulations performed, as well as the blind spots. In addition, in certain scenarios, some drones will travel into the Pillar Area, which is undesired.
+        In all the configurations tested, the drone swarm was able to cover most of the Known Search Area collectively, consistently achieving a search coverage above 80%. However, there are a few blind spots that would be miss by the drones. Notably, the area in corners. Figure 5.10 shows the results from 3 of the simulations performed, as well as the blind spots. In addition, in certain scenarios, some drones will travel into the Pillar Area, which is undesired.
       </p>
       <p>
         After multiple simulations, the two-lanes collision avoidance strategy proved reliable, as no collisions occurred beyond the initial take-off phase where drones fly to their respective dispersion points. Drone-to-drone collisions were only observed between drones in the same group, primarily due to insufficient spacing between drones in the Start Area.
@@ -1017,7 +1017,7 @@
         A total of ten drones are assigned to search the Known Search Area. Since only nine drones were initially used to test the MSBA search strategy, an additional tenth drone will be introduced to perform WF along the outer perimeter of the Playing Field, while drone number nine will be reassigned to WF as well. These drones will maintain a wall-following distance of 0.5 m to handle cases where object markers are placed in the corners. With the addition of a new drone and the reassignment of one drone to WF, the search coverage increased to over 90 %, calculated using the same method described previously.
       </p>
       <p>
-        To address the scenario where drones cross into the Pillar Area like the fourth figure in Figure 5.9, a reverse function was implemented in MSBA to enable the drones to perform 180 degrees turn and continue searching within the Known Search Area. To facilitate this mechanism, two April Tag Navigation Aids will be placed at the border between Known Search Area and Pillar Area. When an MSBA drone in the Known Search Area detects them, the Mission Planner will broadcast a reverse command packet to the detecting drone. Upon receiving this packet, the drone will adjust its preferred heading by 180 degrees, ensuring it remains within the designated search area.
+        To address the scenario where drones cross into the Pillar Area, a reverse function was implemented in MSBA to enable the drones to perform 180 degrees turn and continue searching within the Known Search Area. To facilitate this mechanism, two April Tag Navigation Aids will be placed at the border between Known Search Area and Pillar Area. When an MSBA drone in the Known Search Area detects them, the Mission Planner will broadcast a reverse command packet to the detecting drone. Upon receiving this packet, the drone will adjust its preferred heading by 180 degrees, ensuring it remains within the designated search area.
       </p>
       <image-component tag="image" source="./assets/section-5-known-area/figure_5_10.png"
       subtitle="Figure 5.11: Placements of two Navigation Aids at the border between Known Search Area and Pillar Area"></image-component>
@@ -1104,7 +1104,7 @@
           <image-component tag="image" source="./assets/section-6-unknown-area/figure_6_1_enclosed_space.png"
           subtitle="Figure 6.2: Enclosed space (4m by 5m) set up to test Crazyflie SLAM performance"></image-component>
           <p>
-            During the initial tests, the maps produced by the drone was poor that did not remotely match the ground truth. In one of the runs, it was observed that when the drone performed SLAM, it was leaving an “occupied” trail in Figure 6.2. Upon inspection, it was discovered that the ToF sensors on the multi-ranger deck can be obstructed by the AI deck located below it, as shown in Figure 6.2. After lifting the multi-ranger up to ensure the ToF sensors are unobstructed and cleaning the ToF sensors, this single Crazyflie was able to consistently produce accurate map.
+            During the initial tests, the maps produced by the drone was poor that did not remotely match the ground truth. In one of the runs, it was observed that when the drone performed SLAM, it was leaving an “occupied” trail in Figure 6.3. Upon inspection, it was discovered that the ToF sensors on the multi-ranger deck can be obstructed by the AI deck located below it, as shown in Figure 6.4. After lifting the multi-ranger up to ensure the ToF sensors are unobstructed and cleaning the ToF sensors, this single Crazyflie was able to consistently produce accurate map.
           </p>
           <image-component tag="image" source="./assets/section-6-unknown-area/figure_6_2_occupacy_map.png"
           subtitle="Figure 6.3: Occupancy map produced by single Crazyflie when its back TOF sensor was obstructed"></image-component>
@@ -1124,7 +1124,7 @@
           subtitle="Figure 6.6:Test environment to evaluate the performance of Crazyflie SLAM using onboard multi-ranger deck"></image-component>
           <br><br>
           <image-component tag="image" source="./assets/section-6-unknown-area/figure_6_6_merge_map.png"
-          subtitle="Figure 6.7: Merge map generated by two drones performing wall-following around enclosed space in Figure 6.5 "></image-component>
+          subtitle="Figure 6.7: Merge map generated by two drones performing wall-following around enclosed space in Figure 6.6 "></image-component>
           <p>
             To mitigate map drift in multi-drone SLAM, proper loop closure detection must be implemented. Loop closure detection works by extracting features from the current sensor data and comparing them with previous sensor data. If a match is found, a loop closure constraint is placed in the SLAM map, reducing cumulative error (Nashed, 2020). 
           </p>
@@ -1216,13 +1216,13 @@
             <image-component tag="image" source="./assets/section-6-unknown-area/figure_6_6_desired_paths.png"
             subtitle="Figure 6.8: Desired paths of Group 1 and Group 2 drones to navigate from Start Area to the Unknown Area"></image-component>
             <p>
-              The desired paths of Group 1 and Group 2 drones are first considered from Start Area to the respecting Unknown Search Area openings as illustrated in Figure 6.1 above. There are 3 waypoints along the path from the Start Area to Entrance 2 (orange arrow in Figure 6.1) where key events take place. When a drone reaches point A, it should continue moving forward if it belongs to 2, otherwise turn left into Entrance 1 and begin searching the Unknown Search Area. At point B, the drones should turn left and continue moving forward. At point C, the drones should turn left into the Unknown Search Area and start searching for victim markers.
+              The desired paths of Group 1 and Group 2 drones are first considered from Start Area to the respecting Unknown Search Area openings as illustrated in Figure 6.9 above. There are 3 waypoints along the path from the Start Area to Entrance 2 where key events take place. When a drone reaches point A, it should continue moving forward if it belongs to 2, otherwise turn left into Entrance 1 and begin searching the Unknown Search Area. At point B, the drones should turn left and continue moving forward. At point C, the drones should turn left into the Unknown Search Area and start searching for victim markers.
             </p>
             <p>
               To achieve the desired paths, Navigation Aids will be placed on point A, B, and B, which will be referred to Tag A, Tag B, and Tag C respectively. Whenever these tags are seen by the drones, a radio command unique to the Navigation Aid will be issued to that drone. At the Start Area, all the Unknown Search Area drones will be lined up with point A and B being straight forward to them. 
             </p>
             <p>
-              According to Figure 6.7, there are three unique possible motions that the drones would perform to enter the Unknown Search Area, namely (1) Continue straight forward, (2) Turn left, then continue straight forward, and (3) Turn left, move forward, and begin search. The pseudocode is shown in Algorithm 1, which is implemented in <a href="https://github.com/CDE-4301-ASI-401/SGBA_CF2_App_layer/blob/competition_unknown_SGBA/SGBA.c">SGBA.c</a>. 
+              According to Figure 6.8, there are three unique possible motions that the drones would perform to enter the Unknown Search Area, namely (1) Continue straight forward, (2) Turn left, then continue straight forward, and (3) Turn left, move forward, and begin search. The pseudocode is shown in Algorithm 1, which is implemented in <a href="https://github.com/CDE-4301-ASI-401/SGBA_CF2_App_layer/blob/competition_unknown_SGBA/SGBA.c">SGBA.c</a>. 
             </p>
             <image-component tag="image" source="./assets/section-6-unknown-area/Algorithm_1.png"
             subtitle=""></image-component>
@@ -1236,7 +1236,7 @@
           <div id="sub-section-6-header-4-header-2">
             <h4>6.4.2 MSBA for Searching the Unknown Area</h4>
               <p>
-                Like the MSBA drones in the Known Search Area, these six Unknown Search Area drones have the same set of parameters to be optimized. Without knowledge of the obstacle layout in the area, the six drones will be evenly distributed to maximize search coverage, as shown in Figure 6.8. The preferred angles for each drone are relative to the forward direction, using the right-hand convention.
+                Like the MSBA drones in the Known Search Area, these six Unknown Search Area drones have the same set of parameters to be optimized. Without knowledge of the obstacle layout in the area, the six drones will be evenly distributed to maximize search coverage, as shown in Figure 6.9. The preferred angles for each drone are relative to the forward direction, using the right-hand convention.
               </p>
               <image-component tag="image" source="./assets/section-6-unknown-area/figure_6_8_unknown_preferred_directions.png"
             subtitle="Figure 6.9: Preferred direction of MSBA drones after entering Unknown Area"></image-component>
