@@ -794,7 +794,7 @@
 
     </br></br>
     <div id="section-header-4" class="section" style="display: none;">
-      <h2>4. Search Strategy</h2>
+      <h2>4. Mission Strategy</h2>
       
       <div id="sub-section-4-header-1">
           <h3>4.1 Search Strategy</h3>
@@ -922,7 +922,7 @@
     </div>
 
   <div id="sub-section-5-header-2">
-  <h3>5.2 Modified Swarm Bug Algorithm</h3>
+  <h3>5.2 Modified Swarm Bug Algorithm (MSBA)</h3>
       <p>
         MSBA is a heuristic algorithm governed by a few simple rule-based behaviour as illustrated in Figure 5.4. After take-off, the drone rotates to its preferred heading and then moves forward in that direction. Upon detecting an obstacle, it initiates wall-following until its preferred heading is clear of obstacles.
       </p>
@@ -937,7 +937,7 @@
   </div>
 
   <div id="sub-section-5-header-3">
-    <h3>5.3 Initial Proposal Strategy Using MSBA</h3>
+    <h3>5.3 Initial Proposed Strategy Using MSBA</h3>
       <p>
         The team has allocated a total of 10 drones to search the Known Search Area. To obtain the optimal parameters, the ideal paths of the 10 drones to maximize coverage are first planned in accordance with the heuristic of the algorithm. Then the parameters required to achieve the corresponding flight paths are then determined by working backwards. 
       </p>          
@@ -945,7 +945,7 @@
         The strategy to perform search in the Known Search Area is illustrated in Figure 5.5. It involves deploying the drones on the left side of the Playing Field, ensuring they reach designated dispersion points—Point A, Point B, and Point C, which the drones will then fan out in their respective preferred headings. Each dispersion point is assigned three drones. To guide the drones to their respective dispersion points, they will follow a wall-following manoeuvre around Wall 1, Wall 2, and Wall 3 before dispersing into the search area. 
       </p>
       <p>
-        The flight altitude of all drones is set to 0.3 m because real-life test flight at that height provided great flight stability. The speed of drones is set to 0.4 m/s as it is the optimal speed for stable flight performance after performing real-life testing which will be explained in later section in Section 5.6. This speed also ensures reliable AprilTag detection as tested by the Object Detection system (Section 4.4).
+        The flight altitude of all drones is set to 0.3 m because real-life test flight at that height provided great flight stability. The speed of drones is set to 0.4 m/s as it is the optimal speed for stable flight performance after performing real-life testing which will be explained in later section in Section 5.6. This speed also ensures reliable AprilTag detection as tested by the Object Detection system (Section 3.4).
       </p>
     <image-component tag="image" source="./assets/section-5-known-area/figure_5_4_maximise_coverage.png"
       subtitle="Figure 5.5: Strategy to maximise search coverage using 9 drones running MSBA"></image-component>
@@ -1011,7 +1011,7 @@
   <div id="sub-section-5-header-5">
     <h3>5.5 Improvements to MSBA</h3>
       <p>
-        To address blind spots in the corners of walls, two wall-following (WF) drones will be deployed to cover these areas, as identified in the simulation. To prevent these WF drones from interfering with the paths of the MSBA drones, these WF drones will be fly at a higher altitude of 0.55 m, 0.25 m higher than the altitude of MSBA drones. At this altitude, the effect of downwash on the MSBA drones flying below the WF drones is minimal and has no significant impact on image detection as tested (Section 4.4). 
+        To address blind spots in the corners of walls, two wall-following (WF) drones will be deployed to cover these areas, as identified in the simulation. To prevent these WF drones from interfering with the paths of the MSBA drones, these WF drones will be fly at a higher altitude of 0.55 m, 0.25 m higher than the altitude of MSBA drones. At this altitude, the effect of downwash on the MSBA drones flying below the WF drones is minimal and has no significant impact on image detection as tested (Section 3.4). 
       </p>
       <p>
         A total of ten drones are assigned to search the Known Search Area. Since only nine drones were initially used to test the MSBA search strategy, an additional tenth drone will be introduced to perform WF along the outer perimeter of the Playing Field, while drone number nine will be reassigned to WF as well. These drones will maintain a wall-following distance of 0.5 m to handle cases where object markers are placed in the corners. With the addition of a new drone and the reassignment of one drone to WF, the search coverage increased to over 90 %, calculated using the same method described previously.
@@ -1149,7 +1149,13 @@
           <p>
             Inspired by this advancement, we explored the feasibility of integrating this system into our own search strategy. With support from T-Labs, we successfully fabricated two units of the custom ToF deck for testing. However, despite initial progress, we encountered several critical barriers that prevented full implementation:
           </p>
-          <p>
+          <ol>
+            <l>Memory Constraints: The ETH solution runs advanced SLAM algorithms onboard, requiring more than the standard 192 kB of RAM available on the Crazyflie 2.1. Attempting to flash and run the provided code led to out-of-memory errors on our hardware.</l>
+            <l>Deck Compatibility Issues: The custom deck conflicted with other decks (e.g., Flow Deck v2 or battery mount deck), due to hardware stack limitations and pin usage conflicts.</l>
+            <l>Battery Placement Challenges: The additional hardware and physical modifications left insufficient space to securely and safely place the battery, affecting both stability and flight time.</l>
+            <l>Lack of Full Documentation: Although ETH shared their repository, certain hardware specs, firmware configurations, and system integration details were not fully documented, making it difficult to reproduce the setup reliably within our timeframe.</l>
+          </ol>
+          <!-- <p>
             1. Memory Constraints: The ETH solution runs advanced SLAM algorithms onboard, requiring more than the standard 192 kB of RAM available on the Crazyflie 2.1. Attempting to flash and run the provided code led to out-of-memory errors on our hardware.
           </p>
           <p>
@@ -1160,7 +1166,7 @@
           </p>
           <p>
             4. Lack of Full Documentation: Although ETH shared their repository, certain hardware specs, firmware configurations, and system integration details were not fully documented, making it difficult to reproduce the setup reliably within our timeframe.
-          </p>
+          </p> -->
           <p>
             Given these challenges, and due to time and resource constraints, we have decided to defer implementation of the Nano Swarm Mapping framework. Instead, we will focus on more readily deployable solutions for the current phase of the project, leaving this advanced SLAM approach as a valuable opportunity for future cohorts to explore.
           </p>
@@ -1186,7 +1192,7 @@
           </p>
           <div id="sub-section-6-header-3-header-1">
             <h4>6.3.1 Breadth First Search</h4>
-            <image-component tag="image" source=".assets/section-6-unknown-area/figure_6_9_BFS.png"
+            <image-component tag="image" source="./assets/section-6-unknown-area/figure_6_9_BFS.png"
             subtitles="Figure 6.9: Principle of Breadth First Search(BFS)"></image-component>
             <p>
               Breadth-First Search explores the environment in a layer-by-layer manner, ensuring that all nodes at the current depth are visited before moving on to nodes at the next level. In the context of drone exploration, this translates to prioritizing short-range movements first, allowing the drone to systematically expand outward from its starting point. The drone begins at a known position and marks it as explored. It then identifies all adjacent unexplored areas and places them in a queue. The first area in the queue is explored next, and any new adjacent unexplored regions are added to the queue. This process repeats until all reachable areas have been covered. BFS is advantageous because it ensures uniform coverage and works well with multiple drones, as different drones can simultaneously handle different regions of the map. However, its effectiveness heavily depends on the quality of the merged map. Inaccurate merging can lead to redundant exploration or inefficient path planning.
@@ -1194,7 +1200,7 @@
           </div>
           <div id="sub-section-6-header-3-header-2">
             <h4>6.3.2 Depth First Search</h4>
-            <image-component tag="image" source=".assets/section-6-unknown-area/figure_6_10_DFS.png"
+            <image-component tag="image" source="./assets/section-6-unknown-area/figure_6_10_DFS.png"
             subtitles="Figure 6.10: Principle of Depth First Search(DFS)"></image-component>
             <p>
             <p>
@@ -1203,7 +1209,7 @@
           </div>
           <div id="sub-section-6-header-3-header-3">
             <h4>6.3.3 Frontier Search</h4>
-            <image-component tag="image" source=".assets/section-6-unknown-area/figure_6_11_frontier.png"
+            <image-component tag="image" source="./assets/section-6-unknown-area/figure_6_11_frontier.png"
             subtitles="Figure 6.11: Principle of Frontier Search"></image-component>
             <p>
             <p>
@@ -1226,13 +1232,13 @@
             <image-component tag="image" source="./assets/section-6-unknown-area/figure_6_6_desired_paths.png"
             subtitle="Figure 6.12: Desired paths of Group 1 and Group 2 drones to navigate from Start Area to the Unknown Area"></image-component>
             <p>
-              The desired paths of Group 1 and Group 2 drones are first considered from Start Area to the respecting Unknown Search Area openings as illustrated in Figure 6.9 above. There are 3 waypoints along the path from the Start Area to Entrance 2 where key events take place. When a drone reaches point A, it should continue moving forward if it belongs to 2, otherwise turn left into Entrance 1 and begin searching the Unknown Search Area. At point B, the drones should turn left and continue moving forward. At point C, the drones should turn left into the Unknown Search Area and start searching for victim markers.
+              The desired paths of Group 1 and Group 2 drones are first considered from Start Area to the respecting Unknown Search Area openings as illustrated in Figure 6.12 above. There are 3 waypoints along the path from the Start Area to Entrance 2 where key events take place. When a drone reaches point A, it should continue moving forward if it belongs to 2, otherwise turn left into Entrance 1 and begin searching the Unknown Search Area. At point B, the drones should turn left and continue moving forward. At point C, the drones should turn left into the Unknown Search Area and start searching for victim markers.
             </p>
             <p>
               To achieve the desired paths, Navigation Aids will be placed on point A, B, and B, which will be referred to Tag A, Tag B, and Tag C respectively. Whenever these tags are seen by the drones, a radio command unique to the Navigation Aid will be issued to that drone. At the Start Area, all the Unknown Search Area drones will be lined up with point A and B being straight forward to them. 
             </p>
             <p>
-              According to Figure 6.8, there are three unique possible motions that the drones would perform to enter the Unknown Search Area, namely (1) Continue straight forward, (2) Turn left, then continue straight forward, and (3) Turn left, move forward, and begin search. The pseudocode is shown in Algorithm 1, which is implemented in <a href="https://github.com/CDE-4301-ASI-401/SGBA_CF2_App_layer/blob/competition_unknown_SGBA/SGBA.c">SGBA.c</a>. 
+              According to Figure 6.12, there are three unique possible motions that the drones would perform to enter the Unknown Search Area, namely (1) Continue straight forward, (2) Turn left, then continue straight forward, and (3) Turn left, move forward, and begin search. The pseudocode is shown in Algorithm 1, which is implemented in <a href="https://github.com/CDE-4301-ASI-401/SGBA_CF2_App_layer/blob/competition_unknown_SGBA/SGBA.c">SGBA.c</a>. 
             </p>
             <image-component tag="image" source="./assets/section-6-unknown-area/Algorithm_1.png"
             subtitle=""></image-component>
@@ -1246,10 +1252,10 @@
           <div id="sub-section-6-header-4-header-2">
             <h4>6.4.2 MSBA for Searching the Unknown Area</h4>
               <p>
-                Like the MSBA drones in the Known Search Area, these six Unknown Search Area drones have the same set of parameters to be optimized. Without knowledge of the obstacle layout in the area, the six drones will be evenly distributed to maximize search coverage, as shown in Figure 6.9. The preferred angles for each drone are relative to the forward direction, using the right-hand convention.
+                Like the MSBA drones in the Known Search Area, these six Unknown Search Area drones have the same set of parameters to be optimized. Without knowledge of the obstacle layout in the area, the six drones will be evenly distributed to maximize search coverage, as shown in Figure 6.13. The preferred angles for each drone are relative to the forward direction, using the right-hand convention.
               </p>
               <image-component tag="image" source="./assets/section-6-unknown-area/figure_6_8_unknown_preferred_directions.png"
-            subtitle="Figure 6.: Preferred direction of MSBA drones after entering Unknown Area"></image-component>
+            subtitle="Figure 6.13: Preferred direction of MSBA drones after entering Unknown Area"></image-component>
               <p>
                 To ensure the drones remain within the Unknown Search Area, Navigation Aids placed at the Unknown Search Area openings will be used to guide them. When a drone detects these Navigation Aids, the GCS will issue the corresponding radio command packet to the drone. Once the drones have entered the Unknown Search Area and are on a path to exit, they will again detect these Navigation Aids. Upon receiving the radio command packet from the GCS, the drones' preferred direction will be adjusted to keep them within the boundaries of the Unknown Search Area. The optimal position of Navigation Aids after extensive real-world testing are shown in Figure 6.10.
               </p>
@@ -1270,7 +1276,7 @@
               The Unknown Search Area MSBA drones will be lined up in the Start Area in the order of 4, 6, 8, 5, 7, 9. To mitigate the risk of collisions during take-off, the drones will be spaced equally apart, with both groups of drones taking off in separate wave. Group 2 drones (4, 6 ,8) will take off in the first wave to enter the top opening of Unknown Search Area, whilst the group 1 drones (5, 7, 9) will take off in the second wave, entering the Unknown Search Area from the right opening. 
             </p>
             <image-component tag="image" source="./assets/section-6-unknown-area/figure_6_10_new.png"
-            subtitle="Figure 6.: Configurations of Unknown Search Area drones in Start Area"></image-component>
+            subtitle="Figure 6.14: Configurations of Unknown Search Area drones in Start Area"></image-component>
           </div>
         </div>
   
