@@ -1334,8 +1334,8 @@
           One method explored was to use the same MSBA wall following algorithm with the speed reduced to 0.2 m/s. This worked on the theory that the drone would interpret the Pillars as walls till it comes to free space again, where it would return to its original heading. However, it was found that the drones would follow the Pillar’s circumference as a wall and end up going in an infinite loop.
           <br/>
         </p>
-          <image-component tag="image" source="./assets/section-7-pillar-area/figure_7_4_strat_A.png"
-          subtitle="Figure 7.4: Description of Search Strategy A"></image-component>
+          <image-full tag="image" source="./assets/section-7-pillar-area/figure_7_4_strat_A.png"
+          subtitle="Figure 7.4: Description of Search Strategy A"></image-full>
           <br/>
         <p>
           B.	Using an algorithm that follows the preferred direction till meeting a Pillar, avoiding it by following the circumference
@@ -1343,8 +1343,8 @@
           This method would involve having the drone first fly forward (which is its preferred direction) until it encounters a Pillar head-on, at which time it would avoid the Pillar by flying in a circular path following the walls of the Pillar. It would then resume its original heading after doing so in the new lane that it has corrected its flight path to. However, it tends to drift and cut the Pillar while doing so.
           <br/>
         </p>
-          <image-component tag="image" source="./assets/section-7-pillar-area/figure_7_5_strat_B.png"
-          subtitle="Figure 7.5: Description of Search Strategy B"></image-component>
+          <image-full tag="image" source="./assets/section-7-pillar-area/figure_7_5_strat_B.png"
+          subtitle="Figure 7.5: Description of Search Strategy B"></image-full>
           <br/>
         <p>
           C.	Using an algorithm that follows the preferred direction till meeting a Pillar, and avoids by turning on the spot
@@ -1352,15 +1352,17 @@
           Similarly to method B, the drones would fly in the preferred direction until it meets a Pillar head on. However, unlike the previous method, it would turn on the spot to the left or right by 90 ° and move for a short distance before turning back by another 90 ° to resume its flight in the original heading. This would avoid it cutting the Pillar while doing its “avoidance”, and is a solution developed together with David Chong, an Undergraduate Research Experience (UREx) student working alongside us on our project.
           <br/>
         </p>
-          <image-component tag="image" source="./assets/section-7-pillar-area/figure_7_6_strat_C.png"
-          subtitle="Figure 7.6: Description of Search Strategy C"></image-component>
+          <image-full tag="image" source="./assets/section-7-pillar-area/figure_7_6_strat_C.png"
+          subtitle="Figure 7.6: Description of Search Strategy C"></image-full>
           <br/>
           Comparing the three solutions and their characteristics, we can arrive at the following decision matrix:
           <br/><br/>
           <decision-matrix-pillar subtitle="Table 7.1: Comparison of three search strategies considered">
             <div id="decision-matrix-pillar"></div>
           </decision-matrix-pillar>
-          Given that Solution C is the method that would allow us to maximise the reliability and robustness of the algorithm, it is chosen as our search strategy for the pillar area.
+          <p>
+            Given that Solution C is the method that would allow us to maximise the reliability and robustness of the algorithm, it is chosen as our search strategy for the pillar area.
+          </p>
           </div>
 
         <div id="sub-section-7-header-4">
@@ -1371,15 +1373,15 @@
           <br/>
           Victim Marker are placed in the middle of the Pillar Area in free space. Drones are seen to be able to detect and rescue these victims
           <br/>
-          <image-component tag="image" source="./assets/section-7-pillar-area/victim_free_space.png"
-                           subtitle="Figure 7.7: Victim in free space"></image-component>
+          <image-full tag="image" source="./assets/section-7-pillar-area/victim_free_space.png"
+                           subtitle="Figure 7.7: Victim in free space"></image-full>
           2.	Victim in front of the Pillar
           <br/>
           Another configuration involved placing the victim marker directly in front of the pillar. Similarly to the one in free space, the drones had no issues picking up the victims in front of the pillar.
           <br/>
         </p>
-          <image-component tag="image" source="./assets/section-7-pillar-area/victim_front_pillar.png"
-                           subtitle="Figure 7.8: Victim in front of the pillar"></image-component>
+          <image-full tag="image" source="./assets/section-7-pillar-area/victim_front_pillar.png"
+                           subtitle="Figure 7.8: Victim in front of the pillar"></image-full>
         <p>
           <br/>
           3.	Victim behind the Pillar
@@ -1387,8 +1389,8 @@
           This was the hardest in theory to pick up since the drone would not be able to see the victim till it comes close to the target for the camera to pick it up. However, the drones were able to pick up and rescue the victims in the tests that we did. A failsafe however can be considered to increase the likelihood of rescuing the victim if it is not seen the first time that the drone passes through it.
           <br/>
         </p>
-          <image-component tag="image" source="./assets/section-7-pillar-area/victim_behind_pillar.png"
-                           subtitle="Figure 7.9: Victim behind the pillar"></image-component>
+          <image-full tag="image" source="./assets/section-7-pillar-area/victim_behind_pillar.png"
+                           subtitle="Figure 7.9: Victim behind the pillar"></image-full>
           <br/>
         </div>
         <div id="sub-section-7-header-5">
@@ -1575,7 +1577,7 @@
         <br/>
       <p>
         Run 3 was the best of all runs taken, where three Victim Markers were rescued (of which one is bonus) while none of the Danger Zones were within 1m of the drones after landing.
-        <br/>
+        <br/><br/>
         Originally, we were not able to rescue any victims and score points as we faced a range of issues that hindered our drone swarm’s performance. These are described more in detail below, including how they were resolved as we improved in each run.
         <br/>
       </p>
@@ -1652,6 +1654,7 @@
         <actual-test-scores subtitle="Table 9.2: Actual test scores @ SAFMC 2025">
           <div id="actual-test-scores"></div>
         </actual-test-scores>
+        <p>
         <br/><br/>
         Run 2 was taken as the final score, as it yielded the better result of the two runs. In the known area, all three victims were successfully rescued in Run 2, demonstrating that the search strategy in this area is both robust and reliable. The strategy in the Pillar Area also performed well, successfully rescuing the one bonus victim across both runs.
         <br/><br/>
@@ -1662,8 +1665,7 @@
         For the second run, to mitigate drifting during take-off, the extra April Tags brought to the competition were used as launch platforms by placing the drones on top of the tags. While this method had been used by the previous team, our own testing showed it had negligible impact on take-off performance. The second run deployed only four out of six drones: the same drone that failed to stream images in the first run was retired again, and the drone that failed to take off was also removed. This adjustment created more vertical spacing between the drones, reducing the risk of mid-air collisions. With this configuration, two drones successfully entered the Unknown Search Area, while the remaining two flew past the Navigation Aids and veered into the Known and Pillar Area.
         <br/><br/>
         Despite these challenges, the swarm performed well overall, by demonstrating strong potential for decentralized coordination and victim rescue in a dynamic indoor environment.
-
-      </p>
+        </p>
         <image-component tag="image" source="./assets/section-9-full-scale-testing/team_photo.jpg"
                          subtitle="Figure 9.10: Successful SAFMC 2025!"></image-component>
         <br/><br/>
