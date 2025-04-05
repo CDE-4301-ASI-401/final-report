@@ -1,33 +1,33 @@
 
-// function showSection(sectionId) {
-//     // Hide all .section elements
-//     document.querySelectorAll('.section').forEach((section) => {
-//         section.style.display = 'none';
-//     });
+function showSection(sectionId) {
+    // Hide all .section elements
+    document.querySelectorAll('.section').forEach((section) => {
+        section.style.display = 'none';
+    });
 
-//     // Ensure main-content is visible
-//     const mainContent = document.getElementById('main-content');
-//     if (mainContent) {
-//         mainContent.style.display = 'block';
-//     }
+    // Ensure main-content is visible
+    const mainContent = document.getElementById('main-content');
+    if (mainContent) {
+        mainContent.style.display = 'block';
+    }
 
-//     // Show the clicked section
-//     const section = document.getElementById(sectionId);
-//     if (section) {
-//         section.style.display = 'block';
-//         section.scrollIntoView({ behavior: 'instant' }); // Optional
-//     }
+    // Show the clicked section
+    const section = document.getElementById(sectionId);
+    if (section) {
+        section.style.display = 'block';
+        section.scrollIntoView({ behavior: 'instant' }); // Optional
+    }
 
-//     // Highlight the active link
-//     document.querySelectorAll('.sidenav a').forEach((link) => {
-//         link.classList.remove('active');
-//     });
+    // Highlight the active link
+    document.querySelectorAll('.sidenav a').forEach((link) => {
+        link.classList.remove('active');
+    });
 
-//     const activeLink = document.querySelector(`.sidenav a[onclick="showSection('${sectionId}')"]`);
-//     if (activeLink) {
-//         activeLink.classList.add('active');
-//     }
-// }
+    const activeLink = document.querySelector(`.sidenav a[onclick="showSection('${sectionId}')"]`);
+    if (activeLink) {
+        activeLink.classList.add('active');
+    }
+}
 function showSubSection(parentSectionId, subSectionId) {
     // Hide all top-level sections
     document.querySelectorAll('.section').forEach((section) => {
