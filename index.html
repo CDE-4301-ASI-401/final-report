@@ -1193,7 +1193,7 @@
           <div id="sub-section-6-header-3-header-1">
             <h4>6.3.1 Breadth First Search</h4>
             <image-component tag="image" source="./assets/section-6-unknown-area/figure_6_9_BFS.png"
-            subtitles="Figure 6.9: Principle of Breadth First Search(BFS)"></image-component>
+            subtitle="Figure 6.9: Principle of Breadth First Search(BFS)"></image-component>
             <p>
               Breadth-First Search explores the environment in a layer-by-layer manner, ensuring that all nodes at the current depth are visited before moving on to nodes at the next level. In the context of drone exploration, this translates to prioritizing short-range movements first, allowing the drone to systematically expand outward from its starting point. The drone begins at a known position and marks it as explored. It then identifies all adjacent unexplored areas and places them in a queue. The first area in the queue is explored next, and any new adjacent unexplored regions are added to the queue. This process repeats until all reachable areas have been covered. BFS is advantageous because it ensures uniform coverage and works well with multiple drones, as different drones can simultaneously handle different regions of the map. However, its effectiveness heavily depends on the quality of the merged map. Inaccurate merging can lead to redundant exploration or inefficient path planning.
             </p>
@@ -1201,7 +1201,7 @@
           <div id="sub-section-6-header-3-header-2">
             <h4>6.3.2 Depth First Search</h4>
             <image-component tag="image" source="./assets/section-6-unknown-area/figure_6_10_DFS.png"
-            subtitles="Figure 6.10: Principle of Depth First Search(DFS)"></image-component>
+            subtitle="Figure 6.10: Principle of Depth First Search(DFS)"></image-component>
             <p>
             <p>
               Depth-First Search follows a deep, narrow search pattern by exploring as far as possible in one direction before backtracking. When used with a drone, DFS causes it to move forward until it reaches an obstacle or a previously visited area. Upon reaching a dead end, the drone backtracks to the most recent unexplored branch and continues the search from there. This approach continues until every possible path has been explored. DFS is relatively easy to implement and requires minimal computational resources, making it a suitable choice for a single-drone proof-of-concept. However, it is less efficient than other strategies, often resulting in long, winding paths and excessive backtracking. It is not ideal for time-sensitive missions or situations requiring fast and reliable full coverage.
@@ -1210,7 +1210,7 @@
           <div id="sub-section-6-header-3-header-3">
             <h4>6.3.3 Frontier Search</h4>
             <image-component tag="image" source="./assets/section-6-unknown-area/figure_6_11_frontier.png"
-            subtitles="Figure 6.11: Principle of Frontier Search"></image-component>
+            subtitle="Figure 6.11: Principle of Frontier Search"></image-component>
             <p>
             <p>
               Frontier Search is a highly efficient and adaptive strategy that targets the boundaries between known and unknown regions, known as frontiers. The drone continuously identifies these frontiers and evaluates them based on criteria such as distance, accessibility, and potential information gain. It then selects the most promising frontier to explore, updates the map upon reaching it, and repeats the process. This approach allows the drone to focus its exploration on the most valuable parts of the environment, minimizing redundant coverage. Frontier Search is particularly effective in dynamic environments and is well-suited for multi-drone operations, as different drones can be assigned different frontiers. However, it requires more complex decision-making and greater processing power compared to BFS or DFS. This makes it less suitable for hardware-constrained platforms unless further optimization is applied.
