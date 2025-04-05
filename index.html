@@ -806,8 +806,13 @@
             <p>
               There are two main categories of search strategies: mapped and mapless. A comparison between the two is shown below.  
             </p>
-            <image-full tag="image" source="./assets/section-4-mission-strategy/figure_4_1_comparison_search.png"
-      subtitle="Figure 4.1: A Comparison between Mapped and Mapless Search Strategy"></image-full>
+
+            <!-- <image-full tag="image" source="./assets/section-4-mission-strategy/figure_4_1_comparison_search.png"
+      subtitle="Figure 4.1: A Comparison between Mapped and Mapless Search Strategy"></image-full> -->
+
+      <mapped-mapless-table subtitle="Table 4.1: Mapped vs Mapless Search Strategy">
+        <div id="mapped-mapless-table"></div>
+      </mapped-mapless-table>
 
       <div id="sub-section-4-header-4-header-1">
             <h4>4.1.1 Known Search Area</h4>
@@ -1161,6 +1166,9 @@
           <p>
             To ensure full coverage of the area, an effective exploration strategy must be implemented on top of the generated map. We considered three main exploration strategies: Breadth-First Search (BFS), Depth-First Search (DFS), and Frontier Search. The 3 strategies and how they work are explained in the following subsections. 
           </p>
+          <exploration-strategy-table subtitle="Table 6.1: Comparison of Exploration Strategies">
+          <div id="exploration-strategy-table"></div>
+          </exploration-strategy-table>
           <p>
             While BFS is computationally efficient and well-suited for multi-drone coordination, its effectiveness is limited by the poor performance of the merge map. This limitation makes BFS impractical for our use case, as inaccurate merging can result in inefficient exploration paths or redundant coverage. 
           </p>

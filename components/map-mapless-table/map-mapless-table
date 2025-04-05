@@ -1,0 +1,15 @@
+new gridjs.Grid({
+  columns: ["Criteria", "Mapped Centralized", "Mapless Decentralized"],
+  data: [
+    ["Exploration Strategy", "Global map + centralized planning", "Local perception + individual logic"],
+    ["Hardware Requirements", "High", "Low"],
+    ["Robustness to Drift", "Low", "High"],
+    ["Adaptability", "Medium", "High"],
+    ["Communication Dependence", "High", "Low"],
+    ["Failure Impact", "High", "Low"],
+    ["Implementation Complexity", "High", "Low to Medium"],
+    ["Coverage Assurance", "High", "Medium"],
+  ],
+}).render(document.getElementById("mapped-mapless-table"));
+
+customElements.define("mapped-mapless-table", TableComponent);
