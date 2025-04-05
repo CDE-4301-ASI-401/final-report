@@ -1145,10 +1145,10 @@
         <div id="sub-section-6-header-2">
           <h3>6.2 Feasibility Testing of Mapping Hardware: Custom Multi-Ranger Deck (Samuel)</h3>
           <p>
-            ETH Zurich’s Project-Based Learning Lab (ETH-PBL) recently introduced Nano Swarm Mapping, a decentralized SLAM framework specifically designed for ultra-light nano drones like the Crazyflie 2.1. Unlike traditional centralized SLAM systems that rely on a ground control station (GCS) to collect and process sensor data, this solution allows each drone to independently perform onboard environmental scanning using Time-of-Flight (ToF) sensors. The drones broadcast their local scans and poses to a designated “main drone” within the swarm, which performs SLAM using the collective data and shares the resulting map back with the swarm.
+            ETH Zurich’s Project-Based Learning Lab (ETH-PBL) recently introduced Nano Swarm Mapping, a decentralized SLAM framework specifically designed for ultra-light nano drones like the Crazyflie 2.1. Unlike traditional centralized SLAM systems that rely on a GCS to collect and process sensor data, this solution allows each drone to independently perform onboard environmental scanning using ToF sensors. The drones broadcast their local scans and poses to a designated “main drone” within the swarm, which performs SLAM using the collective data and shares the resulting map back with the swarm.
           </p>
           <p>
-            To address limitations in the Bitcraze Multi-ranger deck—particularly its single-point laser and narrow field of view—ETH researchers engineered a custom deck outfitted with VL53L5CX ToF sensors. These sensors offer a 45-degree spread field of view, significantly improving perception. The ETH system also supports loop closure detection for enhanced accuracy (Friess et al., 2024).
+            To address limitations in the Bitcraze Multi-ranger deck—particularly its single-point laser and narrow field of view—ETH researchers engineered a custom deck outfitted with VL53L5CX ToF sensors, advanced sensors that offer a 45-degree spread field of view, significantly improving perception. The ETH system also supports loop closure detection for enhanced accuracy (Friess et al., 2024).
           </p>
           <image-component tag="image" source="./assets/section-6-unknown-area/figure_6_8_eth_deck.png"
           subtitle="Figure 6.8: Decks manufactured with improved TOF sensors"></image-component>
@@ -1156,10 +1156,10 @@
             Inspired by this advancement, we explored the feasibility of integrating this system into our own search strategy. With support from T-Labs, we successfully fabricated two units of the custom ToF deck for testing. However, despite initial progress, we encountered several critical barriers that prevented full implementation:
           </p>
           <ol>
-            <l>Memory Constraints: The ETH solution runs advanced SLAM algorithms onboard, requiring more than the standard 192 kB of RAM available on the Crazyflie 2.1. Attempting to flash and run the provided code led to out-of-memory errors on our hardware.</l>
-            <l>Deck Compatibility Issues: The custom deck conflicted with other decks (e.g., Flow Deck v2 or battery mount deck), due to hardware stack limitations and pin usage conflicts.</l>
-            <l>Battery Placement Challenges: The additional hardware and physical modifications left insufficient space to securely and safely place the battery, affecting both stability and flight time.</l>
-            <l>Lack of Full Documentation: Although ETH shared their repository, certain hardware specs, firmware configurations, and system integration details were not fully documented, making it difficult to reproduce the setup reliably within our timeframe.</l>
+            <li>Memory Constraints: The ETH solution runs advanced SLAM algorithms onboard, requiring more than the standard 192 kB of RAM available on the Crazyflie 2.1. Attempting to flash and run the provided code led to out-of-memory errors on our hardware.</li>
+            <li>Deck Compatibility Issues: The custom deck conflicted with other decks (e.g., Flow Deck v2 or battery mount deck), due to hardware stack limitations and pin usage conflicts.</li>
+            <li>Battery Placement Challenges: The additional hardware and physical modifications left insufficient space to securely and safely place the battery, affecting both stability and flight time.</li>
+            <li>Lack of Full Documentation: Although ETH shared their repository, certain hardware specs, firmware configurations, and system integration details were not fully documented, making it difficult to reproduce the setup reliably within our timeframe.</li>
           </ol>
           <!-- <p>
             1. Memory Constraints: The ETH solution runs advanced SLAM algorithms onboard, requiring more than the standard 192 kB of RAM available on the Crazyflie 2.1. Attempting to flash and run the provided code led to out-of-memory errors on our hardware.
