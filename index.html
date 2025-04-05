@@ -1144,6 +1144,8 @@
           <p>
             To address limitations in the Bitcraze Multi-ranger deck—particularly its single-point laser and narrow field of view—ETH researchers engineered a custom deck outfitted with VL53L5CX ToF sensors. These sensors offer a 45-degree spread field of view, significantly improving perception. The ETH system also supports loop closure detection for enhanced accuracy (Friess et al., 2024).
           </p>
+          <image-component tag="image" source="./assets/section-6-unknown-area/figure_6_8_eth_deck.png"
+          subtitle="Figure 6.8: Decks manufactured with improved TOF sensors"></image-component>
           <p>
             Inspired by this advancement, we explored the feasibility of integrating this system into our own search strategy. With support from T-Labs, we successfully fabricated two units of the custom ToF deck for testing. However, despite initial progress, we encountered several critical barriers that prevented full implementation:
           </p>
@@ -1184,18 +1186,26 @@
           </p>
           <div id="sub-section-6-header-3-header-1">
             <h4>6.3.1 Breadth First Search</h4>
+            <image-component tag="image" source=".assets/section-6-unknown-area/figure_6_9_BFS.png"
+            subtitles="Figure 6.9: Principle of Breadth First Search(BFS)"></image-component>
             <p>
               Breadth-First Search explores the environment in a layer-by-layer manner, ensuring that all nodes at the current depth are visited before moving on to nodes at the next level. In the context of drone exploration, this translates to prioritizing short-range movements first, allowing the drone to systematically expand outward from its starting point. The drone begins at a known position and marks it as explored. It then identifies all adjacent unexplored areas and places them in a queue. The first area in the queue is explored next, and any new adjacent unexplored regions are added to the queue. This process repeats until all reachable areas have been covered. BFS is advantageous because it ensures uniform coverage and works well with multiple drones, as different drones can simultaneously handle different regions of the map. However, its effectiveness heavily depends on the quality of the merged map. Inaccurate merging can lead to redundant exploration or inefficient path planning.
             </p>
           </div>
           <div id="sub-section-6-header-3-header-2">
             <h4>6.3.2 Depth First Search</h4>
+            <image-component tag="image" source=".assets/section-6-unknown-area/figure_6_10_DFS.png"
+            subtitles="Figure 6.10: Principle of Depth First Search(DFS)"></image-component>
+            <p>
             <p>
               Depth-First Search follows a deep, narrow search pattern by exploring as far as possible in one direction before backtracking. When used with a drone, DFS causes it to move forward until it reaches an obstacle or a previously visited area. Upon reaching a dead end, the drone backtracks to the most recent unexplored branch and continues the search from there. This approach continues until every possible path has been explored. DFS is relatively easy to implement and requires minimal computational resources, making it a suitable choice for a single-drone proof-of-concept. However, it is less efficient than other strategies, often resulting in long, winding paths and excessive backtracking. It is not ideal for time-sensitive missions or situations requiring fast and reliable full coverage.
             </p>
           </div>
           <div id="sub-section-6-header-3-header-3">
             <h4>6.3.3 Frontier Search</h4>
+            <image-component tag="image" source=".assets/section-6-unknown-area/figure_6_11_frontier.png"
+            subtitles="Figure 6.11: Principle of Frontier Search"></image-component>
+            <p>
             <p>
               Frontier Search is a highly efficient and adaptive strategy that targets the boundaries between known and unknown regions, known as frontiers. The drone continuously identifies these frontiers and evaluates them based on criteria such as distance, accessibility, and potential information gain. It then selects the most promising frontier to explore, updates the map upon reaching it, and repeats the process. This approach allows the drone to focus its exploration on the most valuable parts of the environment, minimizing redundant coverage. Frontier Search is particularly effective in dynamic environments and is well-suited for multi-drone operations, as different drones can be assigned different frontiers. However, it requires more complex decision-making and greater processing power compared to BFS or DFS. This makes it less suitable for hardware-constrained platforms unless further optimization is applied.
             </p>
@@ -1214,7 +1224,7 @@
               To get to the openings to the right and top of the Unknown Search Area, the drone will travel through the passageway between the Unknown Search Area right outer wall and the pillars. The right opening will be referred to as Entrance 1, and the top opening will be referred to as Entrance 2. The 3 drones that will enter from Entrance 1 belong to Group 1 and the other 3 drones that enter from Entrance 2 belong to Group 2. 
             </p>
             <image-component tag="image" source="./assets/section-6-unknown-area/figure_6_6_desired_paths.png"
-            subtitle="Figure 6.8: Desired paths of Group 1 and Group 2 drones to navigate from Start Area to the Unknown Area"></image-component>
+            subtitle="Figure 6.12: Desired paths of Group 1 and Group 2 drones to navigate from Start Area to the Unknown Area"></image-component>
             <p>
               The desired paths of Group 1 and Group 2 drones are first considered from Start Area to the respecting Unknown Search Area openings as illustrated in Figure 6.9 above. There are 3 waypoints along the path from the Start Area to Entrance 2 where key events take place. When a drone reaches point A, it should continue moving forward if it belongs to 2, otherwise turn left into Entrance 1 and begin searching the Unknown Search Area. At point B, the drones should turn left and continue moving forward. At point C, the drones should turn left into the Unknown Search Area and start searching for victim markers.
             </p>
@@ -1239,7 +1249,7 @@
                 Like the MSBA drones in the Known Search Area, these six Unknown Search Area drones have the same set of parameters to be optimized. Without knowledge of the obstacle layout in the area, the six drones will be evenly distributed to maximize search coverage, as shown in Figure 6.9. The preferred angles for each drone are relative to the forward direction, using the right-hand convention.
               </p>
               <image-component tag="image" source="./assets/section-6-unknown-area/figure_6_8_unknown_preferred_directions.png"
-            subtitle="Figure 6.9: Preferred direction of MSBA drones after entering Unknown Area"></image-component>
+            subtitle="Figure 6.: Preferred direction of MSBA drones after entering Unknown Area"></image-component>
               <p>
                 To ensure the drones remain within the Unknown Search Area, Navigation Aids placed at the Unknown Search Area openings will be used to guide them. When a drone detects these Navigation Aids, the GCS will issue the corresponding radio command packet to the drone. Once the drones have entered the Unknown Search Area and are on a path to exit, they will again detect these Navigation Aids. Upon receiving the radio command packet from the GCS, the drones' preferred direction will be adjusted to keep them within the boundaries of the Unknown Search Area. The optimal position of Navigation Aids after extensive real-world testing are shown in Figure 6.10.
               </p>
@@ -1260,7 +1270,7 @@
               The Unknown Search Area MSBA drones will be lined up in the Start Area in the order of 4, 6, 8, 5, 7, 9. To mitigate the risk of collisions during take-off, the drones will be spaced equally apart, with both groups of drones taking off in separate wave. Group 2 drones (4, 6 ,8) will take off in the first wave to enter the top opening of Unknown Search Area, whilst the group 1 drones (5, 7, 9) will take off in the second wave, entering the Unknown Search Area from the right opening. 
             </p>
             <image-component tag="image" source="./assets/section-6-unknown-area/figure_6_10_new.png"
-            subtitle="Figure 6.10: Configurations of Unknown Search Area drones in Start Area"></image-component>
+            subtitle="Figure 6.: Configurations of Unknown Search Area drones in Start Area"></image-component>
           </div>
         </div>
   
