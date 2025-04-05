@@ -52,4 +52,4 @@ class TableComponent extends HTMLElement {
   }
 }
 
-customElements.define("comparison-image", TableComponent);
+customElements.define("comparison-image-processing", TableComponent);
