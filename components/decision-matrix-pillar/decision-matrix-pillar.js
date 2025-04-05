@@ -5,7 +5,12 @@ new gridjs.Grid({
     ["Maintains course?", "Yes", "Yes", "Yes"],
     ["Avoids collision?", "Yes", "Yes", "Yes"],
     ["Predictable flight path?", "No", "No", "Yes"],
-  ],
+  ].map(row => [
+    row[0],      // first column (criteria)
+    row[1],
+    row[2],
+    gridjs.html(`<strong>${row[3]}</strong>`)  // bold rightmost column (C)
+  ]),
 }).render(document.getElementById("decision-matrix-pillar"));
 
 class DecisionMatrixPillar extends HTMLElement {

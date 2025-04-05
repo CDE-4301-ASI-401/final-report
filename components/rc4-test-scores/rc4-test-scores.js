@@ -6,7 +6,12 @@ new gridjs.Grid({
     ["Bonus Victim Rescued (+15) – placed in pillar area", "0/1", "1/1", "1/1"],
     ["Danger Zones landed near (-3)", "0/4", "0/4", "0/4"],
     ["Total Score", "0", "20", "35"],
-  ],
+  ].map(row => [
+    row[0], // first column (criteria)
+    row[1],
+    row[2],
+    gridjs.html(`<strong>${row[3]}</strong>`) // bold last column
+  ]),
 }).render(document.getElementById("rc4-test-scores"));
 
 class Rc4TestScores extends HTMLElement {

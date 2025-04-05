@@ -6,7 +6,11 @@ new gridjs.Grid({
     ["Bonus Victim Rescued (+15) – placed in Pillar Zone", "0/1", "1/1"],
     ["Danger Zones landed near (-3)", "0/4", "1/4"],
     ["Total Score", "10", "27"],
-  ],
+  ].map(row => [
+    row[0],
+    row[1],
+    gridjs.html(`<strong>${row[2]}</strong>`)
+  ]),
 }).render(document.getElementById("actual-test-scores"));
 
 class ActualTestScores extends HTMLElement {
