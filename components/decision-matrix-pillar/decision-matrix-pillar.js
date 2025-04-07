@@ -3,7 +3,7 @@ new gridjs.Grid({
   data: [
     ["Loop avoidance?", "No", "Yes", "Yes"],
     ["Maintains course?", "Yes", "Yes", "Yes"],
-    ["Avoids collision?", "Yes", "Yes", "Yes"],
+    ["Avoids collision?", "Yes", "No", "Yes"],
     ["Predictable flight path?", "No", "No", "Yes"],
   ].map(row => [
     row[0],      // first column (criteria)
